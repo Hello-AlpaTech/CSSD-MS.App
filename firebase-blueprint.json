@@ -1,0 +1,297 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile details synchronised from Firebase Auth and settings.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "nip": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "operator", "supervisor"] },
+        "photoUrl": { "type": "string" },
+        "active": { "type": "boolean" }
+      },
+      "required": ["uid", "nip", "name", "email", "role", "active"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Global application configuration settings.",
+      "type": "object",
+      "properties": {
+        "appName": { "type": "string" },
+        "appIcon": { "type": "string" }
+      },
+      "required": ["appName"]
+    },
+    "InstrumentCatalog": {
+      "title": "InstrumentCatalog",
+      "description": "Master list of surgical instruments and sets.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "sku": { "type": "string" },
+        "type": { "type": "string", "enum": ["single", "set"] },
+        "originUnit": { "type": "string" },
+        "description": { "type": "string" },
+        "sterileDurationDays": { "type": "number" },
+        "totalStock": { "type": "number" },
+        "items": { "type": "array" }
+      },
+      "required": ["id", "name", "sku", "type", "sterileDurationDays", "totalStock"]
+    },
+    "Machine": {
+      "title": "Machine",
+      "description": "CSSD machinery like autoclaves and washer disinfectors.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["washer", "sterilizer_steam", "sterilizer_plasma"] },
+        "status": { "type": "string", "enum": ["idle", "running", "maintenance"] },
+        "lastMaintenanceDate": { "type": "object" },
+        "serialNumber": { "type": "string" },
+        "capacity": { "type": "string" },
+        "modes": { "type": "array" },
+        "temperatureRange": { "type": "string" },
+        "cycleTimes": { "type": "string" },
+        "specs": { "type": "string" }
+      },
+      "required": ["id", "name", "type", "status", "serialNumber"]
+    },
+    "SterileStock": {
+      "title": "SterileStock",
+      "description": "Sterilized equipment in RAK storage available for distribution.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "lotNumber": { "type": "string" },
+        "instrumentId": { "type": "string" },
+        "instrumentName": { "type": "string" },
+        "qty": { "type": "number" },
+        "shelfLocation": { "type": "string" },
+        "sterilizedAt": { "type": "object" },
+        "expiresAt": { "type": "object" },
+        "status": { "type": "string", "enum": ["sterile", "expired", "distributed", "recalled"] },
+        "machineName": { "type": "string" },
+        "cycleNumber": { "type": "number" }
+      },
+      "required": ["id", "lotNumber", "instrumentId", "instrumentName", "qty", "shelfLocation", "status"]
+    },
+    "DistributionRecord": {
+      "title": "DistributionRecord",
+      "description": "Log of clinical item distribution and requests.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "requestingUnit": { "type": "string" },
+        "requestedItems": { "type": "array" },
+        "status": { "type": "string", "enum": ["pending", "partially_fulfilled", "fulfilled", "rejected"] },
+        "createdAt": { "type": "object" },
+        "requiredAt": { "type": "object" },
+        "fulfilledAt": { "type": "object" },
+        "fulfilledLots": { "type": "array" },
+        "recipientName": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "requestingUnit", "requestedItems", "status", "createdAt"]
+    },
+    "WorkflowLog": {
+      "title": "WorkflowLog",
+      "description": "Operational stages of medical sets passing from decontamination to sterile storage.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "lotNumber": { "type": "string" },
+        "instrumentId": { "type": "string" },
+        "instrumentName": { "type": "string" },
+        "qty": { "type": "number" },
+        "currentStage": { "type": "string" },
+        "createdAt": { "type": "object" },
+        "updatedAt": { "type": "object" },
+        "history": { "type": "array" },
+        "decontamination": { "type": "object" },
+        "washing": { "type": "object" },
+        "packaging": { "type": "object" },
+        "sterilization": { "type": "object" },
+        "storage": { "type": "object" },
+        "distribution": { "type": "object" }
+      },
+      "required": ["id", "lotNumber", "instrumentId", "instrumentName", "qty", "currentStage", "createdAt", "updatedAt"]
+    },
+    "EnvironmentalLog": {
+      "title": "EnvironmentalLog",
+      "description": "Regular temperature and humidity logs for CSSD sterilization area.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "object" },
+        "temperatureCelsius": { "type": "number" },
+        "humidityPercent": { "type": "number" },
+        "operatorName": { "type": "string" },
+        "status": { "type": "string", "enum": ["normal", "alert_temp", "alert_humidity", "alert_both"] }
+      },
+      "required": ["id", "timestamp", "temperatureCelsius", "humidityPercent", "operatorName", "status"]
+    },
+    "MachineCycle": {
+      "title": "MachineCycle",
+      "description": "Sterilization machine run cycle logs.",
+      "type": "object",
+      "properties": {
+        "machineId": { "type": "string" },
+        "machineName": { "type": "string" },
+        "cycleNumber": { "type": "number" },
+        "operatorName": { "type": "string" },
+        "startTime": { "type": "object" },
+        "endTime": { "type": "object" },
+        "temperatureCelsius": { "type": "number" },
+        "pressureBar": { "type": "number" },
+        "durationMinutes: ": { "type": "number" },
+        "indicatorChemical": { "type": "string" }
+      },
+      "required": ["machineId", "machineName", "cycleNumber", "operatorName", "temperatureCelsius", "pressureBar", "indicatorChemical"]
+    },
+    "BMHPCatalog": {
+      "title": "BMHPCatalog",
+      "description": "Disposable sterile/non-sterile items inventory catalog.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string", "enum": ["sterile", "non_sterile"] },
+        "imageUrl": { "type": "string" },
+        "stockQty": { "type": "number" },
+        "minStockAlert": { "type": "number" },
+        "unit": { "type": "string" },
+        "expirationDate": { "type": "object" },
+        "lastRestockedAt": { "type": "object" }
+      },
+      "required": ["id", "name", "category", "stockQty", "minStockAlert", "unit"]
+    },
+    "BMHPLog": {
+      "title": "BMHPLog",
+      "description": "Stock adjustment logs of BMHP items.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "bmhpId": { "type": "string" },
+        "bmhpName": { "type": "string" },
+        "type": { "type": "string", "enum": ["in", "out"] },
+        "qty": { "type": "number" },
+        "operator": { "type": "string" },
+        "timestamp": { "type": "object" },
+        "notes": { "type": "string" }
+      },
+      "required": ["bmhpId", "bmhpName", "type", "qty", "operator", "timestamp"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Locked append-only audit trail logging all operational and lifecycle actions in e-CSSD.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "object" },
+        "tenantId": { "type": "string" },
+        "installationId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userRole": { "type": "string" },
+        "action": { "type": "string" },
+        "module": { "type": "string" },
+        "entityType": { "type": "string" },
+        "entityId": { "type": "string" },
+        "instrumentId": { "type": "string" },
+        "transactionId": { "type": "string" },
+        "ticketId": { "type": "string" },
+        "beforeState": { "type": "string" },
+        "afterState": { "type": "string" },
+        "beforeLocation": { "type": "string" },
+        "afterLocation": { "type": "string" },
+        "reason": { "type": "string" },
+        "referenceId": { "type": "string" },
+        "result": { "type": "string", "enum": ["SUCCESS", "WARNING", "REJECTED", "FAILED", "CANCELLED"] },
+        "deviceInfo": { "type": "string" }
+      },
+      "required": ["id", "timestamp", "tenantId", "userId", "userName", "userRole", "action", "module", "entityType", "result"]
+    },
+    "DiscrepancyCase": {
+      "title": "DiscrepancyCase",
+      "description": "Inventory discrepancy reconciliation case comparing official registered count vs live physical state.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "masterId": { "type": "string" },
+        "instrumentName": { "type": "string" },
+        "originUnit": { "type": "string" },
+        "totalResmi": { "type": "number" },
+        "registeredUnitCount": { "type": "number" },
+        "liveStateFoundCount": { "type": "number" },
+        "discrepancyQty": { "type": "number" },
+        "status": { "type": "string", "enum": ["SESUAI", "SELISIH", "DALAM_KLARIFIKASI", "SELESAI"] },
+        "detectedAt": { "type": "string" },
+        "problematicUnitIds": { "type": "array" },
+        "clarificationDetails": { "type": "object" },
+        "correctionHistory": { "type": "array" },
+        "tenantId": { "type": "string" }
+      },
+      "required": ["id", "masterId", "instrumentName", "originUnit", "totalResmi", "status", "tenantId"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles"
+    },
+    "settings/{settingId}": {
+      "schema": "Settings",
+      "description": "Application wide settings"
+    },
+    "instruments/{instrumentId}": {
+      "schema": "InstrumentCatalog",
+      "description": "Instrument catalog records"
+    },
+    "machines/{machineId}": {
+      "schema": "Machine",
+      "description": "Machine records"
+    },
+    "sterile_stock/{stockId}": {
+      "schema": "SterileStock",
+      "description": "Active sterile stocks available"
+    },
+    "distribution_logs/{distId}": {
+      "schema": "DistributionRecord",
+      "description": "Clinical item request and distribution history logs"
+    },
+    "workflow_logs/{logId}": {
+      "schema": "WorkflowLog",
+      "description": "Operational decontamination, washing, and sterilization stage logs"
+    },
+    "environmental_logs/{envId}": {
+      "schema": "EnvironmentalLog",
+      "description": "Environmental checks on sterile storage area"
+    },
+    "machine_cycles/{cycleId}": {
+      "schema": "MachineCycle",
+      "description": "Completed machine cycle runs"
+    },
+    "bmhp_catalog/{bmhpId}": {
+      "schema": "BMHPCatalog",
+      "description": "Disposable sterile/non-sterile medical materials"
+    },
+    "bmhp_logs/{logId}": {
+      "schema": "BMHPLog",
+      "description": "In/out logging records for BMHP items"
+    },
+    "audit_logs/{logId}": {
+      "schema": "AuditLog",
+      "description": "Locked append-only audit trail records"
+    },
+    "discrepancy_cases/{caseId}": {
+      "schema": "DiscrepancyCase",
+      "description": "Inventory stock discrepancy cases and clarification history"
+    }
+  }
+}

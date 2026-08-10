@@ -1,0 +1,21 @@
+src/components/SettingsPanel.tsx:49:    // Load App settings
+src/components/SettingsPanel.tsx:51:      const snap = await getDoc(doc(db, "settings", "general"));
+src/components/SettingsPanel.tsx:190:      await setDoc(doc(db, "settings", "general"), { appName, appIcon: finalIcon }, { merge: true });
+src/components/Storage.tsx:195:    const unsubGrids = onSnapshot(doc(db, "settings", "storage_grids"), (docSnap) => {
+src/components/Storage.tsx:714:      await setDoc(doc(db, "settings", "storage_grids"), {
+src/components/Storage.tsx:735:      await setDoc(doc(db, "settings", "storage_grids"), {
+src/components/Storage.tsx:779:      await setDoc(doc(db, "settings", "storage_grids"), {
+src/components/Storage.tsx:928:        await setDoc(doc(db, "settings", "storage_grids"), {
+src/components/Login.tsx:23:        const snap = await getDoc(doc(db, "settings", "general"));
+src/components/AdministrasiModule.tsx:122:        const docSnap = await getDoc(doc(db, "settings", `expired_rules_${tenantId}`));
+src/components/AdministrasiModule.tsx:130:          await setDoc(doc(db, "settings", `expired_rules_${tenantId}`), {
+src/components/AdministrasiModule.tsx:280:      const configRef = doc(db, "settings", `expired_rules_${tenantId}`);
+src/lib/dbSeeder.ts:182:    const seedFlagRef = doc(db, "settings", "db_seed_flag");
+src/lib/dbSeeder.ts:393:    await setDoc(doc(db, "settings", "db_seed_flag"), { 
+src/lib/demoStore.ts:13:  SETTINGS: "cssd_demo_settings",
+src/App.tsx:68:    { id: 'settings', label: 'PENGATURAN', icon: Sliders, roles: ['admin', 'cssd', 'ruangan'] }
+src/App.tsx:97:    // Only subscribe to tenant-protected settings when user is authenticated and active
+src/App.tsx:101:      doc(db, "settings", "general"),
+src/App.tsx:110:        console.warn("[FirestoreListener] settings/general snapshot warning:", error?.message || error);
+src/App.tsx:517:                {currentTab === 'settings' && 'Pengaturan'}
+src/App.tsx:596:                  {currentTab === "settings" && <SettingsPanel currentRole={currentRole} currentUser={userProfile} />}

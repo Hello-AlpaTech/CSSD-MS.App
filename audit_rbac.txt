@@ -1,0 +1,737 @@
+src/components/BmhpLinenModule.tsx:64:  currentUsername: string;
+src/components/BmhpLinenModule.tsx:65:  currentUserProfile?: UserProfile | null;
+src/components/BmhpLinenModule.tsx:80:export default function BmhpLinenModule({ currentUsername, currentUserProfile, isDemoMode = false }: Props) {
+src/components/BmhpLinenModule.tsx:98:  const userRole = currentUserProfile?.role?.toUpperCase() || "PETUGAS_CSSD";
+src/components/BmhpLinenModule.tsx:99:  const userScope = currentUserProfile?.scope || "ALL";
+src/components/BmhpLinenModule.tsx:100:  const userTenant = currentUserProfile?.tenantId || "RSUD-BENDA";
+src/components/BmhpLinenModule.tsx:145:    if (!currentUserProfile) return;
+src/components/BmhpLinenModule.tsx:211:  }, [currentUserProfile]);
+src/components/BmhpLinenModule.tsx:292:        tenantId: userTenant,
+src/components/BmhpLinenModule.tsx:329:        user: currentUserProfile,
+src/components/BmhpLinenModule.tsx:351:        user: currentUserProfile,
+src/components/BmhpLinenModule.tsx:386:        user: currentUserProfile,
+src/components/BmhpLinenModule.tsx:433:        user: currentUserProfile,
+src/components/BmhpLinenModule.tsx:472:        user: currentUserProfile,
+src/components/BmhpLinenModule.tsx:503:        user: currentUserProfile,
+src/components/BmhpLinenModule.tsx:542:        user: currentUserProfile,
+src/components/BmhpLinenModule.tsx:587:          {hasPermission(currentUserProfile, PERMISSIONS.BMHP_CREATE) && (
+src/components/BmhpLinenModule.tsx:596:          {hasPermission(currentUserProfile, PERMISSIONS.BMHP_REQUEST_CREATE) && (
+src/components/BmhpLinenModule.tsx:741:                        {hasPermission(currentUserProfile, PERMISSIONS.BMHP_REQUEST_APPROVE) && (
+src/components/BmhpLinenModule.tsx:829:              {hasPermission(currentUserProfile, PERMISSIONS.BMHP_CREATE) && (
+src/components/BmhpLinenModule.tsx:956:            {hasPermission(currentUserProfile, PERMISSIONS.BMHP_REQUEST_CREATE) && (
+src/components/BmhpLinenModule.tsx:994:                      {req.status === "DIAJUKAN" && hasPermission(currentUserProfile, PERMISSIONS.BMHP_REQUEST_APPROVE) && (
+src/components/BmhpLinenModule.tsx:1011:                      {req.status === "DISETUJUI" && hasPermission(currentUserProfile, PERMISSIONS.BMHP_DISTRIBUTE) && (
+src/components/BmhpLinenModule.tsx:1088:            {hasPermission(currentUserProfile, PERMISSIONS.BMHP_RETURN) && (
+src/components/RecallModule.tsx:31:  currentUsername: string;
+src/components/RecallModule.tsx:51:export default function RecallModule({ currentUsername, currentRole = "admin", isDemoMode = false }: Props) {
+src/components/RecallModule.tsx:180:        initiatedBy: currentUsername,
+src/components/RecallModule.tsx:198:        userName: currentUsername,
+src/components/Sterilization.tsx:270:  currentUsername: string;
+src/components/Sterilization.tsx:274:export default function Sterilization({ currentUsername, isDemoMode = false }: SterilizationProps) {
+src/components/Sterilization.tsx:388:      ctx.fillText(`OPERATOR : ${currentUsername || 'PETUGAS CSSD'}`, 20, 135);
+src/components/Sterilization.tsx:563:          userName: currentUsername,
+src/components/Sterilization.tsx:565:          tenantId: selectedMachine.tenantId || DEFAULT_TENANT_ID
+src/components/Sterilization.tsx:637:            userName: currentUsername,
+src/components/Sterilization.tsx:639:            tenantId: selectedMachine.tenantId || DEFAULT_TENANT_ID
+src/components/Sterilization.tsx:661:          operatorName: currentUsername,
+src/components/Sterilization.tsx:686:        operator: currentUsername,
+src/components/Sterilization.tsx:733:          operatorName: currentUsername,
+src/components/Sterilization.tsx:772:            operator: currentUsername,
+src/components/Sterilization.tsx:787:            operator: currentUsername
+src/components/Sterilization.tsx:836:            operator: currentUsername
+src/components/Sterilization.tsx:865:              userName: currentUsername,
+src/components/Sterilization.tsx:891:              userName: currentUsername,
+src/components/ActivityLog.tsx:54:  currentUsername: string;
+src/components/ActivityLog.tsx:61:  currentUsername, 
+src/components/ActivityLog.tsx:78:  const [tenantFilter, setTenantFilter] = useState<string>("all");
+src/components/ActivityLog.tsx:80:  const [roleFilter, setRoleFilter] = useState<string>("all");
+src/components/ActivityLog.tsx:137:              tenantId: data.tenantId || DEFAULT_TENANT_ID,
+src/components/ActivityLog.tsx:206:      if (tenantFilter !== "all" && log.tenantId !== tenantFilter) {
+src/components/ActivityLog.tsx:216:      if (roleFilter !== "all" && log.userRole !== roleFilter) {
+src/components/ActivityLog.tsx:262:    tenantFilter,
+src/components/ActivityLog.tsx:264:    roleFilter,
+src/components/ActivityLog.tsx:296:    const map: Record<string, { name: string; role: string; count: number; rejectedCount: number; lastActive: string }> = {};
+src/components/ActivityLog.tsx:303:          role: log.userRole || "PETUGAS_CSSD",
+src/components/ActivityLog.tsx:332:      tenantId: targetCorrectionLog.tenantId,
+src/components/ActivityLog.tsx:335:      userName: currentUsername || "Administrator",
+src/components/ActivityLog.tsx:388:      `"${l.tenantId}"`,
+src/components/ActivityLog.tsx:644:                  value={tenantFilter}
+src/components/ActivityLog.tsx:715:                  value={roleFilter}
+src/components/ActivityLog.tsx:1073:                    <span className="text-[10px] font-mono text-cyan-300 uppercase">{u.role}</span>
+src/components/ActivityLog.tsx:1189:                  {selectedAuditDetail.tenantId} ({selectedAuditDetail.installationId || "CSSD"})
+src/components/WebhookLog.tsx:8:  currentUsername: string;
+src/components/WebhookLog.tsx:12:export default function WebhookLog({ currentUsername, isDemoMode = false }: WebhookLogProps) {
+src/components/Penerimaan.tsx:20:  currentUsername: string;
+src/components/Penerimaan.tsx:25:export default function Penerimaan({ currentUsername, onAddNewItem, isDemoMode = false }: PenerimaanProps) {
+src/components/Penerimaan.tsx:277:        userName: currentUsername
+src/components/Penerimaan.tsx:354:        namaPenerima: currentUsername,
+src/components/Penerimaan.tsx:382:        namaPenerima: currentUsername,
+src/components/Penerimaan.tsx:436:        <PickupTicket currentUsername={currentUsername} isDemoMode={isDemoMode} />
+src/components/Penerimaan.tsx:505:                  value={currentUsername}
+src/components/Penerimaan.tsx:716:          currentUser={currentUsername}
+src/components/Distribution.tsx:79:  currentUsername: string;
+src/components/Distribution.tsx:83:export default function Distribution({ currentUsername, isDemoMode = false }: DistributionProps) {
+src/components/Distribution.tsx:418:          field('Petugas CSSD', currentUsername),
+src/components/Distribution.tsx:649:        currentUsername,
+src/components/Distribution.tsx:711:        operator: currentUsername
+src/components/Distribution.tsx:752:              user: currentUsername || "Admin"
+src/components/Distribution.tsx:768:              operatorName: currentUsername,
+src/components/Distribution.tsx:776:              distributedBy: currentUsername,
+src/components/Distribution.tsx:1560:                      <div>Petugas CSSD: <span className="font-bold">{currentUsername}</span></div>
+src/components/Packaging.tsx:11:  currentUsername: string;
+src/components/Packaging.tsx:17:export default function Packaging({ currentUsername, packagingQueue, setPackagingQueue, isDemoMode = false }: PackagingProps) {
+src/components/Packaging.tsx:206:            operator: currentUsername,
+src/components/Packaging.tsx:236:            operator: currentUsername,
+src/components/Packaging.tsx:265:                  operatorName: currentUsername,
+src/components/Packaging.tsx:271:                  operatorName: currentUsername,
+src/components/Packaging.tsx:288:              operator: currentUsername
+src/components/Packaging.tsx:310:                  operatorName: currentUsername,
+src/components/Packaging.tsx:316:                  operatorName: currentUsername,
+src/components/Packaging.tsx:329:              operator: currentUsername
+src/components/Packaging.tsx:355:                userName: currentUsername,
+src/components/Packaging.tsx:365:            petugas: currentUsername,
+src/components/Packaging.tsx:467:                userName: currentUsername,
+src/components/Packaging.tsx:573:                      <p className="text-sm font-bold text-sky-400">{currentUsername}</p>
+src/components/ReportingDashboard.tsx:60:  currentUsername: string;
+src/components/ReportingDashboard.tsx:61:  currentUserProfile?: UserProfile | null;
+src/components/ReportingDashboard.tsx:67:  currentUsername,
+src/components/ReportingDashboard.tsx:68:  currentUserProfile,
+src/components/ReportingDashboard.tsx:121:  const userTenantId = currentUserProfile?.tenantId || DEFAULT_TENANT_ID;
+src/components/ReportingDashboard.tsx:122:  const userRole = currentUserProfile?.role?.toUpperCase() || "OPERATOR";
+src/components/ReportingDashboard.tsx:123:  const rawScope = currentUserProfile?.scope;
+src/components/ReportingDashboard.tsx:200:              { userId: "U-01", name: "Administrator CSSD", email: "cssdrsudbenda@gmail.com", nip: "198801012020011001", role: "ADMIN", tenantId: userTenantId, scope: "ALL", statusAkun: "AKTIF", active: true },
+src/components/ReportingDashboard.tsx:201:              { userId: "U-02", name: "Petugas CSSD Sore", email: "petugas.cssd@rsudbenda.id", nip: "199203152021022003", role: "PETUGAS_CSSD", tenantId: userTenantId, scope: "CSSD", statusAkun: "AKTIF", active: true },
+src/components/ReportingDashboard.tsx:202:              { userId: "U-03", name: "Perawat IGD", email: "perawat.igd@rsudbenda.id", nip: "199507122022032004", role: "PETUGAS_INSTALASI", tenantId: userTenantId, scope: "IGD", statusAkun: "AKTIF", active: true },
+src/components/ReportingDashboard.tsx:203:              { userId: "U-04", name: "Penanggung Jawab OK", email: "pj.ok@rsudbenda.id", nip: "198504202019011002", role: "PENGAWAS", tenantId: userTenantId, scope: "OK Sentral", statusAkun: "AKTIF", active: true }
+src/components/ReportingDashboard.tsx:214:            if (!data.tenantId || data.tenantId === userTenantId) {
+src/components/ReportingDashboard.tsx:224:            if (!data.tenantId || data.tenantId === userTenantId) {
+src/components/ReportingDashboard.tsx:234:            if (!data.tenantId || data.tenantId === userTenantId) {
+src/components/ReportingDashboard.tsx:254:            if (!data.tenantId || data.tenantId === userTenantId) {
+src/components/ReportingDashboard.tsx:264:            if (!data.tenantId || data.tenantId === userTenantId) {
+src/components/ReportingDashboard.tsx:486:        userId: currentUserProfile?.userId || currentUsername,
+src/components/ReportingDashboard.tsx:487:        userName: currentUsername,
+src/components/ReportingDashboard.tsx:494:        tenantId: userTenantId
+src/components/ReportingDashboard.tsx:504:      userId: currentUserProfile?.userId || currentUsername,
+src/components/ReportingDashboard.tsx:505:      userName: currentUsername,
+src/components/ReportingDashboard.tsx:512:      tenantId: userTenantId
+src/components/ReportingDashboard.tsx:572:          unit: a.tenantId || "CSSD",
+src/components/ReportingDashboard.tsx:1653:                          <td className="p-2.5 text-slate-300 font-bold">{u.role}</td>
+src/components/HoldKarantina.tsx:37:  currentUsername: string;
+src/components/HoldKarantina.tsx:60:export default function HoldKarantina({ currentUsername, currentRole = "admin", isDemoMode = false }: Props) {
+src/components/HoldKarantina.tsx:216:        reportedBy: currentUsername,
+src/components/HoldKarantina.tsx:234:        userName: currentUsername,
+src/components/HoldKarantina.tsx:279:        lastReleasedBy: currentUsername,
+src/components/HoldKarantina.tsx:295:        reason: `Pelepasan Karantina disetujui (${currentUsername}): ${releaseForm.repairNotes}. Masuk tahap ${targetStage}.`,
+src/components/HoldKarantina.tsx:296:        userName: currentUsername,
+src/components/Decontamination.tsx:10:  currentUsername: string;
+src/components/Decontamination.tsx:17:export default function Decontamination({ currentUsername, isDemoMode = false }: DecontaminationProps) {
+src/components/Decontamination.tsx:198:          userName: currentUsername,
+src/components/Decontamination.tsx:240:                  operatorName: currentUsername,
+src/components/Decontamination.tsx:283:                userName: currentUsername,
+src/components/Decontamination.tsx:298:              operatorName: currentUsername,
+src/components/ReceptionTicket.tsx:29:  currentUser?: string;
+src/components/ReceptionTicket.tsx:32:export default function ReceptionTicket({ data, onClose, currentUser = "Petugas CSSD" }: ReceptionTicketProps) {
+src/components/ReceptionTicket.tsx:55:      userName: currentUser
+src/components/ReceptionTicket.tsx:91:        operator: data.namaPenerima || currentUser,
+src/components/ReceptionTicket.tsx:123:Penerima  : ${data.namaPenerima || currentUser}
+src/components/ReceptionTicket.tsx:199:                    <td>{data.namaPenerima || currentUser}</td>
+src/components/PickupTicket.tsx:12:  currentUsername: string;
+src/components/PickupTicket.tsx:27:export default function PickupTicket({ currentUsername, isDemoMode = false }: PickupTicketProps) {
+src/components/PickupTicket.tsx:111:          userName: currentUsername
+src/components/PickupTicket.tsx:168:  }, [selectedTicketId, isDemoMode, currentUsername]);
+src/components/PickupTicket.tsx:194:        operatorName: currentUsername,
+src/components/PickupTicket.tsx:226:      await executeVoidTicket(ticketData.idPenerimaan, voidReason, currentUsername, isDemoMode);
+src/components/PickupTicket.tsx:471:                    value={currentUsername}
+src/components/SettingsPanel.tsx:3:import { db, auth, storage } from "../lib/firebase";
+src/components/SettingsPanel.tsx:5:import { createUserWithEmailAndPassword, sendPasswordResetEmail, getAuth } from "firebase/auth";
+src/components/SettingsPanel.tsx:17:  currentUser?: UserProfile | null;
+src/components/SettingsPanel.tsx:20:export default function SettingsPanel({ currentRole, currentUser }: Props) {
+src/components/SettingsPanel.tsx:34:    nip: "", name: "", email: "", whatsapp: "", role: "operator", password: ""
+src/components/SettingsPanel.tsx:233:        role: userForm.role || "operator",
+src/components/SettingsPanel.tsx:241:        nip: "", name: "", email: "", whatsapp: "", role: "operator"
+src/components/SettingsPanel.tsx:269:        <p className="max-w-sm">Hanya akun dengan role Admin yang dapat mengakses menu Pengaturan dan Manajemen Akun.</p>
+src/components/SettingsPanel.tsx:390:        <UserManagement currentUser={currentUser || null} />
+src/components/SettingsPanel.tsx:469:                  <select value={userForm.role} onChange={e => setUserForm({...userForm, role: e.target.value as any})} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-sm text-slate-200 focus:border-sky-500">
+src/components/MachineTest.tsx:52:  currentUsername: string;
+src/components/MachineTest.tsx:54:  currentUserProfile?: UserProfile | null;
+src/components/MachineTest.tsx:171:  currentUsername, 
+src/components/MachineTest.tsx:173:  currentUserProfile,
+src/components/MachineTest.tsx:177:  const canEditMachines = hasPermission(currentUserProfile, PERMISSIONS.MESIN_EDIT) || currentRole === 'admin' || currentRole === 'supervisor';
+src/components/MachineTest.tsx:200:  const [operatorName, setOperatorName] = useState<string>(currentUsername || "Operator CSSD");
+src/components/MachineTest.tsx:257:    if (currentUsername) {
+src/components/MachineTest.tsx:258:      setOperatorName(currentUsername);
+src/components/MachineTest.tsx:260:  }, [currentUsername]);
+src/components/MachineTest.tsx:329:        reason: `Perubahan status mesin manual oleh ${currentUsername} (${currentRole})`,
+src/components/MachineTest.tsx:330:        userName: currentUsername,
+src/components/MachineTest.tsx:332:        tenantId: targetMachine.tenantId || DEFAULT_TENANT_ID
+src/components/MachineTest.tsx:478:      tenantId: activeSelectedMachine?.tenantId || DEFAULT_TENANT_ID,
+src/components/MachineTest.tsx:488:      operatorName: operatorName || currentUsername || "Operator CSSD",
+src/components/MachineTest.tsx:489:      petugasNama: operatorName || currentUsername || "Operator CSSD",
+src/components/MachineTest.tsx:531:            userName: currentUsername,
+src/components/MachineTest.tsx:533:            tenantId: activeSelectedMachine.tenantId || DEFAULT_TENANT_ID
+src/components/MachineTest.tsx:600:        tenantId: DEFAULT_TENANT_ID,
+src/components/MachineTest.tsx:617:        userName: currentUsername,
+src/components/MachineTest.tsx:619:        tenantId: DEFAULT_TENANT_ID
+src/components/OnProcessCSSD.tsx:20:  currentUsername: string;
+src/components/OnProcessCSSD.tsx:41:export default function OnProcessCSSD({ currentUsername, isDemoMode = false }: OnProcessCSSDProps) {
+src/components/Inventory.tsx:20:  currentUsername: string;
+src/components/Inventory.tsx:21:  currentUserProfile?: UserProfile | null;
+src/components/Inventory.tsx:26:export default function Inventory({ currentUsername, currentUserProfile, initialTab = 'instruments', mode = 'master' }: Props) {
+src/components/Inventory.tsx:1031:        operator: currentUsername,
+src/components/Inventory.tsx:1224:        <SetCompositionAndImport currentUser={currentUserProfile || null} />
+src/components/SetCompositionAndImport.tsx:57:  currentUser: UserProfile | null;
+src/components/SetCompositionAndImport.tsx:61:export default function SetCompositionAndImport({ currentUser, onImportCompleted }: Props) {
+src/components/SetCompositionAndImport.tsx:62:  const tenantId = currentUser?.tenantId || DEFAULT_TENANT_ID;
+src/components/SetCompositionAndImport.tsx:92:    if (!currentUser || !isUserActive(currentUser)) return;
+src/components/SetCompositionAndImport.tsx:99:        if (data.tenantId === tenantId || currentUser?.email === "cssdrsudbenda@gmail.com") {
+src/components/SetCompositionAndImport.tsx:108:            tenantId: data.tenantId || tenantId,
+src/components/SetCompositionAndImport.tsx:122:        if (data.tenantId === tenantId || currentUser?.email === "cssdrsudbenda@gmail.com") {
+src/components/SetCompositionAndImport.tsx:131:            tenantId: data.tenantId || tenantId
+src/components/SetCompositionAndImport.tsx:163:  }, [currentUser, tenantId]);
+src/components/SetCompositionAndImport.tsx:236:    checkPermissionOrThrow(currentUser, PERMISSIONS.MASTER_INSTRUMEN_CREATE, {
+src/components/SetCompositionAndImport.tsx:296:        tenantId,
+src/components/SetCompositionAndImport.tsx:313:          tenantId,
+src/components/SetCompositionAndImport.tsx:321:        tenantId,
+src/components/SetCompositionAndImport.tsx:322:        userId: currentUser?.uid || "SYSTEM",
+src/components/SetCompositionAndImport.tsx:323:        userName: currentUser?.name || "Admin",
+src/components/SetCompositionAndImport.tsx:324:        userRole: currentUser?.role || "ADMIN",
+src/components/SetCompositionAndImport.tsx:385:    a.download = `Template_Import_Inventaris_${tenantId}.csv`;
+src/components/SetCompositionAndImport.tsx:392:    checkPermissionOrThrow(currentUser, PERMISSIONS.INVENTARIS_REGISTER, {
+src/components/SetCompositionAndImport.tsx:515:    checkPermissionOrThrow(currentUser, PERMISSIONS.INVENTARIS_REGISTER, {
+src/components/SetCompositionAndImport.tsx:546:          tenantId,
+src/components/SetCompositionAndImport.tsx:560:          tenantId,
+src/components/SetCompositionAndImport.tsx:573:          tenantId,
+src/components/SetCompositionAndImport.tsx:582:        tenantId,
+src/components/SetCompositionAndImport.tsx:583:        userId: currentUser?.uid || "SYSTEM",
+src/components/SetCompositionAndImport.tsx:584:        userName: currentUser?.name || "Admin",
+src/components/SetCompositionAndImport.tsx:585:        userRole: currentUser?.role || "ADMIN",
+src/components/SetCompositionAndImport.tsx:862:                  <li><strong>Komposisi Belum Lengkap</strong>: Jika komponen fisik yang diperoleh lebih sedikit dari standar set, status otomatis menjadi <strong className="text-amber-400 font-mono">BELUM_LENGKAP_PENYEDIAAN</strong>.</li>
+src/components/Storage.tsx:48:  currentUsername: string;
+src/components/Storage.tsx:53:export default function Storage({ currentUsername, currentRole = "operator", isDemoMode = false }: StorageProps) {
+src/components/Storage.tsx:253:      operatorName: currentUsername || "Petugas CSSD",
+src/components/Storage.tsx:271:      operatorName: currentUsername || "Petugas CSSD",
+src/components/Storage.tsx:391:        operator: currentUsername
+src/components/Storage.tsx:485:          user: currentUsername || "Admin"
+src/components/Storage.tsx:494:          "storage.storedBy": currentUsername
+src/components/Storage.tsx:505:        operator: currentUsername
+src/components/Storage.tsx:892:      receipt += `Petugas CSSD: ${currentUsername}\n`;
+src/components/TenantManagement.tsx:39:  currentUser: UserProfile | null;
+src/components/TenantManagement.tsx:42:export default function TenantManagement({ currentUser }: Props) {
+src/components/TenantManagement.tsx:43:  const [tenants, setTenants] = useState<Tenant[]>([]);
+src/components/TenantManagement.tsx:81:    if (!currentUser || !isUserActive(currentUser)) return;
+src/components/TenantManagement.tsx:83:    // Listen to master_tenants collection
+src/components/TenantManagement.tsx:85:      collection(db, "master_tenants"),
+src/components/TenantManagement.tsx:92:            tenantId: d.tenantId || docSnap.id,
+src/components/TenantManagement.tsx:122:            tenantId: DEFAULT_TENANT_ID,
+src/components/TenantManagement.tsx:144:          setDoc(doc(db, "master_tenants", DEFAULT_TENANT_ID), defaultTenant).catch(() => {});
+src/components/TenantManagement.tsx:151:        console.warn("[FirestoreListener] master_tenants snapshot warning:", err?.message || err);
+src/components/TenantManagement.tsx:155:    // Listen to tenant_installations collection
+src/components/TenantManagement.tsx:157:      collection(db, "tenant_installations"),
+src/components/TenantManagement.tsx:165:            tenantId: d.tenantId || DEFAULT_TENANT_ID,
+src/components/TenantManagement.tsx:176:        console.warn("[FirestoreListener] tenant_installations snapshot warning:", err?.message || err);
+src/components/TenantManagement.tsx:184:  }, [currentUser]);
+src/components/TenantManagement.tsx:189:      checkPermissionOrThrow(currentUser, PERMISSIONS.TENANT_CREATE, {
+src/components/TenantManagement.tsx:192:        tenantId: currentUser?.tenantId || DEFAULT_TENANT_ID
+src/components/TenantManagement.tsx:232:      const existing = tenants.find(t => t.tenantId === rawId || t.id === rawId);
+src/components/TenantManagement.tsx:243:        tenantId: rawId,
+src/components/TenantManagement.tsx:267:      await setDoc(doc(db, "master_tenants", rawId), newTenantPayload);
+src/components/TenantManagement.tsx:269:      // Initialize default installations for new tenant (IGD, OK, POLI_GIGI, RAWAT_INAP, ICU, CSSD)
+src/components/TenantManagement.tsx:280:        await setDoc(doc(db, "tenant_installations", inst.id), {
+src/components/TenantManagement.tsx:283:          tenantId: rawId,
+src/components/TenantManagement.tsx:298:        userId: currentUser?.userId || currentUser?.uid,
+src/components/TenantManagement.tsx:299:        userName: currentUser?.name,
+src/components/TenantManagement.tsx:300:        userRole: currentUser?.role,
+src/components/TenantManagement.tsx:301:        afterState: JSON.stringify({ tenantId: rawId, nama: formNamaRumahSakit, status: "AKTIF" }),
+src/components/TenantManagement.tsx:303:        tenantId: rawId
+src/components/TenantManagement.tsx:309:      console.error("Create tenant error:", err);
+src/components/TenantManagement.tsx:310:      setErrorMsg(err.message || "Gagal membuat tenant baru.");
+src/components/TenantManagement.tsx:317:  const openEditModal = (tenant: Tenant) => {
+src/components/TenantManagement.tsx:319:      checkPermissionOrThrow(currentUser, PERMISSIONS.TENANT_EDIT, {
+src/components/TenantManagement.tsx:320:        resource: `TENANT/${tenant.tenantId}`,
+src/components/TenantManagement.tsx:322:        tenantId: currentUser?.tenantId || DEFAULT_TENANT_ID
+src/components/TenantManagement.tsx:325:      setSelectedTenant(tenant);
+src/components/TenantManagement.tsx:326:      setFormTenantId(tenant.tenantId);
+src/components/TenantManagement.tsx:327:      setFormKodeTenant(tenant.kodeTenant);
+src/components/TenantManagement.tsx:328:      setFormNamaRumahSakit(tenant.namaRumahSakit);
+src/components/TenantManagement.tsx:329:      setFormNamaSingkat(tenant.namaSingkat);
+src/components/TenantManagement.tsx:330:      setFormAlamat(tenant.alamat || "");
+src/components/TenantManagement.tsx:331:      setFormKota(tenant.kota || "");
+src/components/TenantManagement.tsx:332:      setFormTelepon(tenant.telepon || "");
+src/components/TenantManagement.tsx:333:      setFormEmail(tenant.email || "");
+src/components/TenantManagement.tsx:334:      setFormLogo(tenant.logo || "/Icon.png");
+src/components/TenantManagement.tsx:335:      setFormNamaCSSD(tenant.namaCSSD || "");
+src/components/TenantManagement.tsx:336:      setFormPrinterType(tenant.pengaturanCetak?.printerType || "VSC MP-58 C (Thermal 58mm ESC/POS)");
+src/components/TenantManagement.tsx:380:      await updateDoc(doc(db, "master_tenants", selectedTenant.tenantId), updatedPayload);
+src/components/TenantManagement.tsx:394:        entityId: selectedTenant.tenantId,
+src/components/TenantManagement.tsx:395:        userId: currentUser?.userId || currentUser?.uid,
+src/components/TenantManagement.tsx:396:        userName: currentUser?.name,
+src/components/TenantManagement.tsx:397:        userRole: currentUser?.role,
+src/components/TenantManagement.tsx:400:        reason: `Pembaruan profil dan konfigurasi Tenant ${selectedTenant.tenantId}`,
+src/components/TenantManagement.tsx:401:        tenantId: selectedTenant.tenantId
+src/components/TenantManagement.tsx:407:      console.error("Update tenant error:", err);
+src/components/TenantManagement.tsx:408:      setErrorMsg(err.message || "Gagal memperbarui data tenant.");
+src/components/TenantManagement.tsx:415:  const openStatusModal = (tenant: Tenant) => {
+src/components/TenantManagement.tsx:417:      checkPermissionOrThrow(currentUser, PERMISSIONS.TENANT_EDIT, {
+src/components/TenantManagement.tsx:418:        resource: `TENANT/${tenant.tenantId}`,
+src/components/TenantManagement.tsx:420:        tenantId: currentUser?.tenantId || DEFAULT_TENANT_ID
+src/components/TenantManagement.tsx:423:      setSelectedTenant(tenant);
+src/components/TenantManagement.tsx:424:      setFormStatus(tenant.statusTenant === "AKTIF" ? "NONAKTIF" : "AKTIF");
+src/components/TenantManagement.tsx:464:      await updateDoc(doc(db, "master_tenants", selectedTenant.tenantId), updateData);
+src/components/TenantManagement.tsx:471:        entityId: selectedTenant.tenantId,
+src/components/TenantManagement.tsx:472:        userId: currentUser?.userId || currentUser?.uid,
+src/components/TenantManagement.tsx:473:        userName: currentUser?.name,
+src/components/TenantManagement.tsx:474:        userRole: currentUser?.role,
+src/components/TenantManagement.tsx:477:        reason: `Perubahan status Tenant ${selectedTenant.tenantId} menjadi ${formStatus}. Alasan: ${statusReason.trim()}`,
+src/components/TenantManagement.tsx:478:        tenantId: selectedTenant.tenantId
+src/components/TenantManagement.tsx:485:      setErrorMsg(err.message || "Gagal mengubah status tenant.");
+src/components/TenantManagement.tsx:492:  const openInstallationsModal = (tenant: Tenant) => {
+src/components/TenantManagement.tsx:493:    setSelectedTenant(tenant);
+src/components/TenantManagement.tsx:518:      const docId = `${selectedTenant.tenantId}_${kode}`;
+src/components/TenantManagement.tsx:522:        tenantId: selectedTenant.tenantId,
+src/components/TenantManagement.tsx:530:      await setDoc(doc(db, "tenant_installations", docId), payload);
+src/components/TenantManagement.tsx:537:        userId: currentUser?.userId || currentUser?.uid,
+src/components/TenantManagement.tsx:538:        userName: currentUser?.name,
+src/components/TenantManagement.tsx:539:        userRole: currentUser?.role,
+src/components/TenantManagement.tsx:540:        afterState: JSON.stringify({ kode, nama, tenantId: selectedTenant.tenantId }),
+src/components/TenantManagement.tsx:541:        reason: `Penambahan Instalasi "${nama}" (${kode}) pada Tenant ${selectedTenant.tenantId}`,
+src/components/TenantManagement.tsx:542:        tenantId: selectedTenant.tenantId
+src/components/TenantManagement.tsx:556:  const currentTenantId = currentUser?.tenantId || DEFAULT_TENANT_ID;
+src/components/TenantManagement.tsx:558:  const filteredTenants = tenants.filter((t) => {
+src/components/TenantManagement.tsx:560:      t.tenantId.toLowerCase().includes(searchQuery.toLowerCase()) ||
+src/components/TenantManagement.tsx:570:  // Active tenant installations for selected tenant
+src/components/TenantManagement.tsx:572:    (i) => i.tenantId === selectedTenant?.tenantId
+src/components/TenantManagement.tsx:592:          {hasPermission(currentUser, PERMISSIONS.TENANT_CREATE) && (
+src/components/TenantManagement.tsx:669:        {filteredTenants.map((tenant) => {
+src/components/TenantManagement.tsx:670:          const isCurrentActive = tenant.tenantId === currentTenantId;
+src/components/TenantManagement.tsx:671:          const tenantInstCount = installations.filter(i => i.tenantId === tenant.tenantId).length;
+src/components/TenantManagement.tsx:675:              key={tenant.id}
+src/components/TenantManagement.tsx:680:                tenant.statusTenant === "AKTIF"
+src/components/TenantManagement.tsx:698:                      ID: {tenant.tenantId}
+src/components/TenantManagement.tsx:703:                      tenant.statusTenant === "AKTIF"
+src/components/TenantManagement.tsx:708:                    {tenant.statusTenant === "AKTIF" ? (
+src/components/TenantManagement.tsx:726:                      src={tenant.logo || "/Icon.png"}
+src/components/TenantManagement.tsx:727:                      alt={tenant.namaRumahSakit}
+src/components/TenantManagement.tsx:737:                      {tenant.namaRumahSakit}
+src/components/TenantManagement.tsx:740:                      {tenant.namaSingkat} {tenant.kodeTenant ? `(${tenant.kodeTenant})` : ""}
+src/components/TenantManagement.tsx:749:                    <span className="truncate">{tenant.alamat || "-"}, {tenant.kota || "-"}</span>
+src/components/TenantManagement.tsx:753:                    <span>{tenant.telepon || "-"}</span>
+src/components/TenantManagement.tsx:757:                    <span className="truncate text-slate-300 font-medium">{tenant.namaCSSD}</span>
+src/components/TenantManagement.tsx:761:                    <span>{tenantInstCount} Instalasi Terdaftar</span>
+src/components/TenantManagement.tsx:765:                {tenant.statusTenant === "NONAKTIF" && tenant.nonactiveReason && (
+src/components/TenantManagement.tsx:768:                    {tenant.nonactiveReason}
+src/components/TenantManagement.tsx:776:                  onClick={() => openInstallationsModal(tenant)}
+src/components/TenantManagement.tsx:781:                  <span>Instalasi ({tenantInstCount})</span>
+src/components/TenantManagement.tsx:785:                  {hasPermission(currentUser, PERMISSIONS.TENANT_EDIT) && (
+src/components/TenantManagement.tsx:788:                        onClick={() => openEditModal(tenant)}
+src/components/TenantManagement.tsx:796:                        onClick={() => openStatusModal(tenant)}
+src/components/TenantManagement.tsx:798:                          tenant.statusTenant === "AKTIF"
+src/components/TenantManagement.tsx:802:                        title={tenant.statusTenant === "AKTIF" ? "Nonaktifkan Tenant" : "Aktifkan Tenant"}
+src/components/TenantManagement.tsx:840:                    <p className="text-xs text-slate-400">Buat entitas isolasi tenant baru dengan identitas permanen.</p>
+src/components/TenantManagement.tsx:1022:                    <p className="text-xs text-slate-400">ID Tenant: <span className="font-mono text-sky-400">{selectedTenant.tenantId}</span> (Permanen)</p>
+src/components/TenantManagement.tsx:1183:                    <p className="text-xs text-slate-400">{selectedTenant.namaRumahSakit} ({selectedTenant.tenantId})</p>
+src/components/TenantManagement.tsx:1261:                    <p className="text-xs text-slate-400">{selectedTenant.namaRumahSakit} ({selectedTenant.tenantId})</p>
+src/components/TenantManagement.tsx:1326:                          Belum ada instalasi terdaftar untuk tenant ini.
+src/components/UserManagement.tsx:5:import { sendPasswordResetEmail, getAuth } from "firebase/auth";
+src/components/UserManagement.tsx:36:  currentUser: UserProfile | null;
+src/components/UserManagement.tsx:39:export default function UserManagement({ currentUser }: Props) {
+src/components/UserManagement.tsx:42:  const [roleFilter, setRoleFilter] = useState<string>("ALL");
+src/components/UserManagement.tsx:66:    if (!currentUser || !isUserActive(currentUser)) return;
+src/components/UserManagement.tsx:75:          const normRole = normalizeRole(data.role);
+src/components/UserManagement.tsx:89:            role: normRole,
+src/components/UserManagement.tsx:90:            tenantId: data.tenantId || DEFAULT_TENANT_ID,
+src/components/UserManagement.tsx:110:  }, [currentUser]);
+src/components/UserManagement.tsx:114:      checkPermissionOrThrow(currentUser, PERMISSIONS.USER_CREATE, {
+src/components/UserManagement.tsx:117:        tenantId: currentUser?.tenantId || DEFAULT_TENANT_ID
+src/components/UserManagement.tsx:125:      setFormTenantId(currentUser?.tenantId || DEFAULT_TENANT_ID);
+src/components/UserManagement.tsx:139:      checkPermissionOrThrow(currentUser, PERMISSIONS.USER_EDIT, {
+src/components/UserManagement.tsx:142:        tenantId: currentUser?.tenantId || DEFAULT_TENANT_ID
+src/components/UserManagement.tsx:149:      setFormRole(normalizeRole(user.role));
+src/components/UserManagement.tsx:150:      setFormTenantId(user.tenantId || DEFAULT_TENANT_ID);
+src/components/UserManagement.tsx:153:      setFormPermissions(user.permissions || getDefaultPermissions(user.role));
+src/components/UserManagement.tsx:164:    // Auto populate default permissions for selected role
+src/components/UserManagement.tsx:191:      const myTenant = currentUser?.tenantId || DEFAULT_TENANT_ID;
+src/components/UserManagement.tsx:192:      if (currentUser?.email !== "cssdrsudbenda@gmail.com" && targetTenant !== myTenant) {
+src/components/UserManagement.tsx:197:      if (currentUser?.email === emailKey) {
+src/components/UserManagement.tsx:198:        if (formRole !== normalizeRole(currentUser.role)) {
+src/components/UserManagement.tsx:217:        checkPermissionOrThrow(currentUser, PERMISSIONS.USER_EDIT, {
+src/components/UserManagement.tsx:220:          tenantId: targetTenant
+src/components/UserManagement.tsx:224:          role: editingUser.role,
+src/components/UserManagement.tsx:227:          tenantId: editingUser.tenantId,
+src/components/UserManagement.tsx:237:          role: formRole,
+src/components/UserManagement.tsx:238:          tenantId: targetTenant,
+src/components/UserManagement.tsx:247:          role: formRole,
+src/components/UserManagement.tsx:250:          tenantId: targetTenant,
+src/components/UserManagement.tsx:255:        if (editingUser.role !== formRole) {
+src/components/UserManagement.tsx:261:            userId: currentUser?.userId || currentUser?.uid,
+src/components/UserManagement.tsx:262:            userName: currentUser?.name,
+src/components/UserManagement.tsx:263:            userRole: currentUser?.role,
+src/components/UserManagement.tsx:264:            beforeState: String(editingUser.role),
+src/components/UserManagement.tsx:266:            reason: `Perubahan role user ${emailKey} oleh Admin`,
+src/components/UserManagement.tsx:267:            tenantId: targetTenant
+src/components/UserManagement.tsx:277:            userId: currentUser?.userId || currentUser?.uid,
+src/components/UserManagement.tsx:278:            userName: currentUser?.name,
+src/components/UserManagement.tsx:279:            userRole: currentUser?.role,
+src/components/UserManagement.tsx:283:            tenantId: targetTenant
+src/components/UserManagement.tsx:293:            userId: currentUser?.userId || currentUser?.uid,
+src/components/UserManagement.tsx:294:            userName: currentUser?.name,
+src/components/UserManagement.tsx:295:            userRole: currentUser?.role,
+src/components/UserManagement.tsx:299:            tenantId: targetTenant
+src/components/UserManagement.tsx:310:            userId: currentUser?.userId || currentUser?.uid,
+src/components/UserManagement.tsx:311:            userName: currentUser?.name,
+src/components/UserManagement.tsx:312:            userRole: currentUser?.role,
+src/components/UserManagement.tsx:316:            tenantId: targetTenant
+src/components/UserManagement.tsx:323:        checkPermissionOrThrow(currentUser, PERMISSIONS.USER_CREATE, {
+src/components/UserManagement.tsx:326:          tenantId: targetTenant
+src/components/UserManagement.tsx:338:          role: formRole,
+src/components/UserManagement.tsx:339:          tenantId: targetTenant,
+src/components/UserManagement.tsx:355:          userId: currentUser?.userId || currentUser?.uid,
+src/components/UserManagement.tsx:356:          userName: currentUser?.name,
+src/components/UserManagement.tsx:357:          userRole: currentUser?.role,
+src/components/UserManagement.tsx:358:          afterState: JSON.stringify({ role: formRole, status: formStatus, tenant: targetTenant }),
+src/components/UserManagement.tsx:360:          tenantId: targetTenant
+src/components/UserManagement.tsx:377:      if (user.email === currentUser?.email) {
+src/components/UserManagement.tsx:382:      checkPermissionOrThrow(currentUser, targetAction, {
+src/components/UserManagement.tsx:385:        tenantId: user.tenantId || DEFAULT_TENANT_ID
+src/components/UserManagement.tsx:403:        userId: currentUser?.userId || currentUser?.uid,
+src/components/UserManagement.tsx:404:        userName: currentUser?.name,
+src/components/UserManagement.tsx:405:        userRole: currentUser?.role,
+src/components/UserManagement.tsx:409:        tenantId: user.tenantId || DEFAULT_TENANT_ID
+src/components/UserManagement.tsx:420:      checkPermissionOrThrow(currentUser, PERMISSIONS.USER_EDIT, {
+src/components/UserManagement.tsx:423:        tenantId: currentUser?.tenantId || DEFAULT_TENANT_ID
+src/components/UserManagement.tsx:426:      const authObj = getAuth();
+src/components/UserManagement.tsx:427:      await sendPasswordResetEmail(authObj, email);
+src/components/UserManagement.tsx:435:  const currentTenant = currentUser?.tenantId || DEFAULT_TENANT_ID;
+src/components/UserManagement.tsx:438:    const uTenant = u.tenantId || DEFAULT_TENANT_ID;
+src/components/UserManagement.tsx:439:    const matchTenant = currentTenant === uTenant || currentUser?.email === "cssdrsudbenda@gmail.com";
+src/components/UserManagement.tsx:446:    const matchRole = roleFilter === "ALL" || normalizeRole(u.role) === roleFilter;
+src/components/UserManagement.tsx:469:          {hasPermission(currentUser, PERMISSIONS.USER_CREATE) && (
+src/components/UserManagement.tsx:514:              value={roleFilter}
+src/components/UserManagement.tsx:567:                  const normRole = normalizeRole(u.role);
+src/components/UserManagement.tsx:604:                          <span>{u.tenantId || DEFAULT_TENANT_ID}</span>
+src/components/UserManagement.tsx:643:                          {hasPermission(currentUser, PERMISSIONS.USER_EDIT) && (
+src/components/UserManagement.tsx:653:                          {hasPermission(currentUser, PERMISSIONS.USER_DEACTIVATE) && (
+src/components/Login.tsx:2:import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+src/components/Login.tsx:4:import { auth, db } from "../lib/firebase";
+src/components/Login.tsx:47:      const res = await signInWithPopup(auth, provider);
+src/components/Login.tsx:104:        await signOut(auth);
+src/components/Login.tsx:115:          await signOut(auth);
+src/components/Login.tsx:122:      if (errCode === "auth/popup-blocked") {
+src/components/Login.tsx:124:      } else if (errCode === "auth/popup-closed-by-user") {
+src/components/Login.tsx:126:      } else if (errCode === "auth/unauthorized-domain") {
+src/components/StockDiscrepancy.tsx:94:  tenantId: string;
+src/components/StockDiscrepancy.tsx:98:  currentUsername: string;
+src/components/StockDiscrepancy.tsx:104:  currentUsername,
+src/components/StockDiscrepancy.tsx:126:    petugasPemeriksa: currentUsername,
+src/components/StockDiscrepancy.tsx:158:    const roleLower = (currentRole || "").toLowerCase();
+src/components/StockDiscrepancy.tsx:159:    return roleLower === "admin" || roleLower === "supervisor" || roleLower.includes("admin");
+src/components/StockDiscrepancy.tsx:204:            tenantId: DEFAULT_TENANT_ID
+src/components/StockDiscrepancy.tsx:218:            tenantId: DEFAULT_TENANT_ID
+src/components/StockDiscrepancy.tsx:317:        tenantId: DEFAULT_TENANT_ID
+src/components/StockDiscrepancy.tsx:405:      userId: currentUsername,
+src/components/StockDiscrepancy.tsx:473:          petugasPemeriksa: currentUsername,
+src/components/StockDiscrepancy.tsx:482:        resolvedBy: currentUsername
+src/components/StockDiscrepancy.tsx:501:      userId: currentUsername,
+src/components/StockDiscrepancy.tsx:502:      userName: currentUsername,
+src/components/StockDiscrepancy.tsx:532:        userId: currentUsername,
+src/components/StockDiscrepancy.tsx:533:        userName: currentUsername,
+src/components/StockDiscrepancy.tsx:580:              actor: currentUsername,
+src/components/StockDiscrepancy.tsx:626:                actor: currentUsername,
+src/components/StockDiscrepancy.tsx:643:        userId: currentUsername,
+src/components/StockDiscrepancy.tsx:644:        userName: currentUsername,
+src/components/AdministrasiModule.tsx:11:  currentUser: UserProfile | null;
+src/components/AdministrasiModule.tsx:14:export default function AdministrasiModule({ currentUser }: Props) {
+src/components/AdministrasiModule.tsx:15:  const [activeTab, setActiveTab] = useState<'tenant' | 'instalasi' | 'konfigurasi'>('tenant');
+src/components/AdministrasiModule.tsx:16:  const tenantId = currentUser?.tenantId || "RSUD-BENDA";
+src/components/AdministrasiModule.tsx:17:  const userRole = currentUser?.role || "OPERATOR";
+src/components/AdministrasiModule.tsx:20:  const [tenantData, setTenantData] = useState<Tenant | null>(null);
+src/components/AdministrasiModule.tsx:48:  const isPlatformAdmin = currentUser?.email === "cssdrsudbenda@gmail.com" || userRole === "PLATFORM_ADMIN";
+src/components/AdministrasiModule.tsx:57:    const unsub = onSnapshot(doc(db, "master_tenants", tenantId), (docSnap) => {
+src/components/AdministrasiModule.tsx:62:          tenantId: d.tenantId || docSnap.id,
+src/components/AdministrasiModule.tsx:92:  }, [tenantId, isPlatformAdmin]);
+src/components/AdministrasiModule.tsx:96:    const q = query(collection(db, "tenant_installations"), where("tenantId", "==", tenantId));
+src/components/AdministrasiModule.tsx:104:          tenantId: d.tenantId,
+src/components/AdministrasiModule.tsx:116:  }, [tenantId]);
+src/components/AdministrasiModule.tsx:122:        const docSnap = await getDoc(doc(db, "settings", `expired_rules_${tenantId}`));
+src/components/AdministrasiModule.tsx:130:          await setDoc(doc(db, "settings", `expired_rules_${tenantId}`), {
+src/components/AdministrasiModule.tsx:134:            tenantId
+src/components/AdministrasiModule.tsx:148:          where("tenantId", "==", tenantId),
+src/components/AdministrasiModule.tsx:168:  }, [tenantId, activeTab]);
+src/components/AdministrasiModule.tsx:170:  // Handle tenant details update
+src/components/AdministrasiModule.tsx:173:    if (!currentUser) return;
+src/components/AdministrasiModule.tsx:177:      const ref = doc(db, "master_tenants", tenantId);
+src/components/AdministrasiModule.tsx:195:        entityId: tenantId,
+src/components/AdministrasiModule.tsx:196:        tenantId,
+src/components/AdministrasiModule.tsx:197:        userId: currentUser.uid || currentUser.userId,
+src/components/AdministrasiModule.tsx:198:        userName: currentUser.name,
+src/components/AdministrasiModule.tsx:199:        userRole: currentUser.role,
+src/components/AdministrasiModule.tsx:207:      alert("Gagal memperbarui profil tenant: " + err.message);
+src/components/AdministrasiModule.tsx:216:    if (!currentUser) return;
+src/components/AdministrasiModule.tsx:234:      const docId = `${tenantId}-${kodeClean}`;
+src/components/AdministrasiModule.tsx:235:      const instRef = doc(db, "tenant_installations", docId);
+src/components/AdministrasiModule.tsx:240:        tenantId,
+src/components/AdministrasiModule.tsx:254:        tenantId,
+src/components/AdministrasiModule.tsx:255:        userId: currentUser.uid || currentUser.userId,
+src/components/AdministrasiModule.tsx:256:        userName: currentUser.name,
+src/components/AdministrasiModule.tsx:257:        userRole: currentUser.role,
+src/components/AdministrasiModule.tsx:276:    if (!currentUser) return;
+src/components/AdministrasiModule.tsx:280:      const configRef = doc(db, "settings", `expired_rules_${tenantId}`);
+src/components/AdministrasiModule.tsx:288:        tenantId,
+src/components/AdministrasiModule.tsx:298:        entityId: `expired_rules_${tenantId}`,
+src/components/AdministrasiModule.tsx:299:        tenantId,
+src/components/AdministrasiModule.tsx:300:        userId: currentUser.uid || currentUser.userId,
+src/components/AdministrasiModule.tsx:301:        userName: currentUser.name,
+src/components/AdministrasiModule.tsx:302:        userRole: currentUser.role,
+src/components/AdministrasiModule.tsx:325:            <p className="text-xs text-slate-400">Pusat tata kelola tenant, instalasi unit pelayanan, dan aturan operasional</p>
+src/components/AdministrasiModule.tsx:333:          onClick={() => setActiveTab('tenant')}
+src/components/AdministrasiModule.tsx:335:            activeTab === 'tenant' ? 'bg-slate-800 text-sky-400 shadow-md' : 'text-slate-400 hover:text-slate-200'
+src/components/AdministrasiModule.tsx:362:      {activeTab === 'tenant' && (
+src/components/AdministrasiModule.tsx:365:            // Platform admin views global tenant list
+src/components/AdministrasiModule.tsx:366:            <TenantManagement currentUser={currentUser} />
+src/components/AdministrasiModule.tsx:368:            // Normal Tenant admin views their isolated tenant details
+src/components/AdministrasiModule.tsx:377:                    <p className="text-xs text-slate-400">Kelola identitas resmi dan printer tenant yang terisolasi secara total</p>
+src/components/AdministrasiModule.tsx:393:              ) : !tenantData ? (
+src/components/AdministrasiModule.tsx:401:                      <span className="font-mono text-sky-400 font-bold block mt-1">{tenantData.tenantId}</span>
+src/components/AdministrasiModule.tsx:405:                      <span className="text-slate-100 font-semibold block mt-1">{tenantData.namaRumahSakit}</span>
+src/components/AdministrasiModule.tsx:409:                      <span className="text-slate-100 block mt-1">{tenantData.namaSingkat}</span>
+src/components/AdministrasiModule.tsx:413:                      <span className="text-slate-100 block mt-1">{tenantData.namaCSSD}</span>
+src/components/AdministrasiModule.tsx:420:                      <span className="text-slate-100 block mt-1">{tenantData.alamat || "-"}</span>
+src/components/AdministrasiModule.tsx:424:                      <span className="text-slate-100 block mt-1">{tenantData.kota || "-"}</span>
+src/components/AdministrasiModule.tsx:428:                      <span className="text-slate-100 block mt-1">{tenantData.telepon || "-"} / {tenantData.email || "-"}</span>
+src/components/AdministrasiModule.tsx:433:                        {tenantData.pengaturanCetak?.printerType || "VSC MP-58 C (Thermal 58mm ESC/POS)"}
+src/lib/receptionTransaction.ts:41:  userProfile?: any;
+src/lib/receptionTransaction.ts:43:  tenantId?: string;
+src/lib/receptionTransaction.ts:57:  tenantId?: string;
+src/lib/receptionTransaction.ts:266:    userProfile,
+src/lib/receptionTransaction.ts:268:    tenantId = "RSUD-BENDA",
+src/lib/receptionTransaction.ts:313:            tenantId
+src/lib/receptionTransaction.ts:329:              tenantId
+src/lib/receptionTransaction.ts:354:      tenantId,
+src/lib/receptionTransaction.ts:388:        tenantId,
+src/lib/receptionTransaction.ts:410:        tenantId
+src/lib/receptionTransaction.ts:423:          tenantId
+src/lib/receptionTransaction.ts:453:          tenantId
+src/lib/receptionTransaction.ts:515:      tenantId,
+src/lib/receptionTransaction.ts:532:      tenantId,
+src/lib/receptionTransaction.ts:544:      tenantId,
+src/lib/receptionTransaction.ts:578:        tenantId,
+src/lib/receptionTransaction.ts:594:          tenantId,
+src/lib/receptionTransaction.ts:611:          tenantId,
+src/lib/receptionTransaction.ts:640:      tenantId
+src/lib/receptionTransaction.ts:653:        tenantId
+src/lib/bmhpLinenTransaction.ts:26:  const tenantId = user?.tenantId || DEFAULT_TENANT_ID;
+src/lib/bmhpLinenTransaction.ts:31:    tenantId,
+src/lib/bmhpLinenTransaction.ts:51:    tenantId,
+src/lib/bmhpLinenTransaction.ts:71:      userRole: user?.role || "PETUGAS_INSTALASI",
+src/lib/bmhpLinenTransaction.ts:72:      tenantId,
+src/lib/bmhpLinenTransaction.ts:90:    userRole: user?.role,
+src/lib/bmhpLinenTransaction.ts:91:    tenantId,
+src/lib/bmhpLinenTransaction.ts:111:  const tenantId = user?.tenantId || DEFAULT_TENANT_ID;
+src/lib/bmhpLinenTransaction.ts:116:    tenantId
+src/lib/bmhpLinenTransaction.ts:153:    userRole: user?.role,
+src/lib/bmhpLinenTransaction.ts:154:    tenantId,
+src/lib/bmhpLinenTransaction.ts:175:  const tenantId = user?.tenantId || DEFAULT_TENANT_ID;
+src/lib/bmhpLinenTransaction.ts:180:    tenantId
+src/lib/bmhpLinenTransaction.ts:201:      userRole: user?.role || "PETUGAS_CSSD",
+src/lib/bmhpLinenTransaction.ts:202:      tenantId,
+src/lib/bmhpLinenTransaction.ts:255:              userRole: user?.role,
+src/lib/bmhpLinenTransaction.ts:256:              tenantId,
+src/lib/bmhpLinenTransaction.ts:292:        tenantId
+src/lib/bmhpLinenTransaction.ts:301:      tenantId,
+src/lib/bmhpLinenTransaction.ts:327:    userRole: user?.role,
+src/lib/bmhpLinenTransaction.ts:328:    tenantId,
+src/lib/bmhpLinenTransaction.ts:348:  const tenantId = user?.tenantId || DEFAULT_TENANT_ID;
+src/lib/bmhpLinenTransaction.ts:353:    tenantId,
+src/lib/bmhpLinenTransaction.ts:375:      userRole: user?.role || "PETUGAS_INSTALASI",
+src/lib/bmhpLinenTransaction.ts:376:      tenantId,
+src/lib/bmhpLinenTransaction.ts:420:          tenantId
+src/lib/bmhpLinenTransaction.ts:427:          tenantId,
+src/lib/bmhpLinenTransaction.ts:445:      tenantId,
+src/lib/bmhpLinenTransaction.ts:463:    userRole: user?.role,
+src/lib/bmhpLinenTransaction.ts:464:    tenantId,
+src/lib/bmhpLinenTransaction.ts:484:  const tenantId = user?.tenantId || DEFAULT_TENANT_ID;
+src/lib/bmhpLinenTransaction.ts:489:    tenantId,
+src/lib/bmhpLinenTransaction.ts:503:    tenantId,
+src/lib/bmhpLinenTransaction.ts:522:      userRole: user?.role || "PETUGAS_INSTALASI",
+src/lib/bmhpLinenTransaction.ts:523:      tenantId,
+src/lib/bmhpLinenTransaction.ts:541:    userRole: user?.role,
+src/lib/bmhpLinenTransaction.ts:542:    tenantId,
+src/lib/bmhpLinenTransaction.ts:563:  const tenantId = user?.tenantId || DEFAULT_TENANT_ID;
+src/lib/bmhpLinenTransaction.ts:568:    tenantId
+src/lib/bmhpLinenTransaction.ts:589:      userRole: user?.role || "PETUGAS_CSSD",
+src/lib/bmhpLinenTransaction.ts:590:      tenantId,
+src/lib/bmhpLinenTransaction.ts:635:      tenantId,
+src/lib/bmhpLinenTransaction.ts:652:    userRole: user?.role,
+src/lib/bmhpLinenTransaction.ts:653:    tenantId,
+src/lib/bmhpLinenTransaction.ts:673:  const tenantId = user?.tenantId || DEFAULT_TENANT_ID;
+src/lib/bmhpLinenTransaction.ts:678:    tenantId,
+src/lib/bmhpLinenTransaction.ts:700:      userRole: user?.role || "PETUGAS_INSTALASI",
+src/lib/bmhpLinenTransaction.ts:701:      tenantId,
+src/lib/bmhpLinenTransaction.ts:716:          tenantId,
+src/lib/bmhpLinenTransaction.ts:733:          userRole: user?.role,
+src/lib/bmhpLinenTransaction.ts:734:          tenantId,
+src/lib/bmhpLinenTransaction.ts:743:          tenantId,
+src/lib/bmhpLinenTransaction.ts:764:          userRole: user?.role,
+src/lib/bmhpLinenTransaction.ts:765:          tenantId,
+src/lib/bmhpLinenTransaction.ts:774:          tenantId,
+src/lib/bmhpLinenTransaction.ts:795:          userRole: user?.role,
+src/lib/bmhpLinenTransaction.ts:796:          tenantId,
+src/lib/bmhpLinenTransaction.ts:807:      tenantId,
+src/lib/auditLogger.ts:85:    tenantId: params.tenantId || DEFAULT_TENANT_ID,
+src/lib/auditLogger.ts:141:      tenantId: "RSUD-BENDA",
+src/lib/auditLogger.ts:166:      tenantId: "RSUD-BENDA",
+src/lib/auditLogger.ts:191:      tenantId: "RSUD-BENDA",
+src/lib/auditLogger.ts:216:      tenantId: "RSUD-BENDA",
+src/lib/auditLogger.ts:241:      tenantId: "RSUD-BENDA",
+src/lib/auditLogger.ts:266:      tenantId: "RSUD-BENDA",
+src/lib/auditLogger.ts:291:      tenantId: "RSUD-BENDA",
+src/lib/auditLogger.ts:316:      tenantId: "RSUD-BENDA",
+src/lib/auditLogger.ts:341:      tenantId: "RSUD-BENDA",
+src/lib/permissions.ts:109:export function getDefaultPermissions(roleInput: string): string[] {
+src/lib/permissions.ts:110:  const role = normalizeRole(roleInput);
+src/lib/permissions.ts:112:  switch (role) {
+src/lib/permissions.ts:212: * Normalizes input role string to Official RoleType
+src/lib/permissions.ts:214:export function normalizeRole(roleInput?: string): RoleType {
+src/lib/permissions.ts:215:  if (!roleInput) return "PETUGAS_CSSD";
+src/lib/permissions.ts:216:  const upper = roleInput.toUpperCase().trim();
+src/lib/permissions.ts:258:  const role = normalizeRole(user.role);
+src/lib/permissions.ts:259:  if (role === "ADMIN" || role === "PLATFORM_ADMIN") return true;
+src/lib/permissions.ts:261:  const userPerms = user.permissions || getDefaultPermissions(role);
+src/lib/permissions.ts:272:  const role = normalizeRole(user.role);
+src/lib/permissions.ts:273:  if (role === "ADMIN" || role === "PETUGAS_CSSD" || role === "PENGAWAS") return true;
+src/lib/permissions.ts:284: * Verifies tenant isolation
+src/lib/permissions.ts:289:  const userTenant = user.tenantId || DEFAULT_TENANT_ID;
+src/lib/permissions.ts:303:    tenantId?: string;
+src/lib/permissions.ts:307:  const targetTenant = options?.tenantId || DEFAULT_TENANT_ID;
+src/lib/permissions.ts:316:      tenantId: targetTenant
+src/lib/permissions.ts:330:      userRole: user.role,
+src/lib/permissions.ts:333:      tenantId: targetTenant
+src/lib/permissions.ts:346:      userRole: user.role,
+src/lib/permissions.ts:348:      reason: `Akses lintas tenant ditolak: User Tenant (${user.tenantId}) mencoba mengakses Target Tenant (${targetTenant})`,
+src/lib/permissions.ts:349:      tenantId: targetTenant
+src/lib/permissions.ts:362:      userRole: user.role,
+src/lib/permissions.ts:365:      tenantId: targetTenant
+src/lib/permissions.ts:381:      userRole: user.role,
+src/lib/permissions.ts:384:      tenantId: targetTenant
+src/lib/permissions.ts:395:  const normalizedRole = normalizeRole(raw?.role);
+src/lib/permissions.ts:397:  const tenantId = raw?.tenantId || DEFAULT_TENANT_ID;
+src/lib/permissions.ts:412:    role: normalizedRole,
+src/lib/permissions.ts:413:    tenantId,
+src/lib/firebase.ts:3:import { getAuth } from "firebase/auth";
+src/lib/firebase.ts:10:export const auth = getAuth(app);
+src/lib/firebase.ts:26:  authInfo: {
+src/lib/firebase.ts:31:    tenantId?: string | null;
+src/lib/firebase.ts:45:    authInfo: {
+src/lib/firebase.ts:46:      userId: auth.currentUser?.uid,
+src/lib/firebase.ts:47:      email: auth.currentUser?.email,
+src/lib/firebase.ts:48:      emailVerified: auth.currentUser?.emailVerified,
+src/lib/firebase.ts:49:      isAnonymous: auth.currentUser?.isAnonymous,
+src/lib/firebase.ts:50:      tenantId: auth.currentUser?.tenantId,
+src/lib/firebase.ts:51:      providerInfo: auth.currentUser?.providerData?.map(provider => ({
+src/lib/distributionTransaction.ts:25:  currentUsername: string;
+src/lib/distributionTransaction.ts:26:  userProfile?: UserProfile | null;
+src/lib/distributionTransaction.ts:133:    currentUsername,
+src/lib/distributionTransaction.ts:134:    userProfile,
+src/lib/distributionTransaction.ts:146:  const tenantId = userProfile?.tenantId || DEFAULT_TENANT_ID;
+src/lib/distributionTransaction.ts:150:  if (userProfile && !canAccessInstallation(userProfile, targetUnit)) {
+src/lib/distributionTransaction.ts:155:      userId: userProfile.userId || currentUsername,
+src/lib/distributionTransaction.ts:156:      userName: currentUsername,
+src/lib/distributionTransaction.ts:157:      userRole: userProfile.role,
+src/lib/distributionTransaction.ts:159:      reason: `Distribusi ke ${targetUnit} ditolak: User scope (${JSON.stringify(userProfile.scope)}) tidak mencakup target unit`,
+src/lib/distributionTransaction.ts:160:      tenantId
+src/lib/distributionTransaction.ts:192:        userName: currentUsername,
+src/lib/distributionTransaction.ts:193:        tenantId
+src/lib/distributionTransaction.ts:260:        userName: currentUsername,
+src/lib/distributionTransaction.ts:261:        tenantId
+src/lib/distributionTransaction.ts:329:        tenantId,
+src/lib/distributionTransaction.ts:346:        tenantId
+src/lib/distributionTransaction.ts:369:      userName: currentUsername,
+src/lib/distributionTransaction.ts:370:      tenantId
+src/App.tsx:2:import { db, auth, handleFirestoreError, OperationType } from "./lib/firebase";
+src/App.tsx:4:import { onAuthStateChanged, signOut, User as FirebaseUser } from "firebase/auth";
+src/App.tsx:39:  const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
+src/App.tsx:40:  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+src/App.tsx:45:  const computedRole = userProfile?.role?.toLowerCase() || 'operator';
+src/App.tsx:52:    { id: 'dashboard', label: 'DASHBOARD', icon: LayoutDashboard, roles: ['admin', 'cssd', 'ruangan'] },
+src/App.tsx:53:    { id: 'penerimaan', label: 'PENERIMAAN', icon: ClipboardCheck, roles: ['admin', 'cssd', 'ruangan'] },
+src/App.tsx:54:    { id: 'proses_cssd', label: 'PROSES CSSD', icon: Droplets, roles: ['admin', 'cssd'] },
+src/App.tsx:55:    { id: 'machine_test', label: 'UJI KELAYAKAN MESIN', icon: Gauge, roles: ['admin', 'cssd'] },
+src/App.tsx:56:    { id: 'sterilization', label: 'STERILISASI', icon: Flame, roles: ['admin', 'cssd'] },
+src/App.tsx:57:    { id: 'storage', label: 'RAK & STOK STERIL', icon: FolderClosed, roles: ['admin', 'cssd'] },
+src/App.tsx:58:    { id: 'distribution', label: 'DISTRIBUSI / PENGAMBILAN', icon: Handshake, roles: ['admin', 'cssd', 'ruangan'] },
+src/App.tsx:59:    { id: 'recall', label: 'RECALL', icon: RotateCcw, roles: ['admin', 'cssd'] },
+src/App.tsx:60:    { id: 'hold', label: 'KARANTINA / HOLD', icon: AlertTriangle, roles: ['admin', 'cssd'] },
+src/App.tsx:61:    { id: 'inventory', label: 'INVENTARIS', icon: Package, roles: ['admin', 'cssd', 'ruangan'] },
+src/App.tsx:62:    { id: 'bmhp_linen', label: 'BMHP & LINEN', icon: PackageCheck, roles: ['admin', 'cssd', 'ruangan'] },
+src/App.tsx:63:    { id: 'stock_opname', label: 'STOCK OPNAME', icon: ClipboardList, roles: ['admin', 'cssd'] },
+src/App.tsx:64:    { id: 'reports', label: 'LAPORAN', icon: BarChart2, roles: ['admin', 'cssd', 'ruangan'] },
+src/App.tsx:65:    { id: 'master_data', label: 'MASTER DATA', icon: Database, roles: ['admin'] },
+src/App.tsx:66:    { id: 'activity_log', label: 'AUDIT LOG', icon: Activity, roles: ['admin'] },
+src/App.tsx:67:    { id: 'administrasi', label: 'ADMINISTRASI', icon: ShieldCheck, roles: ['admin'] },
+src/App.tsx:68:    { id: 'settings', label: 'PENGATURAN', icon: Sliders, roles: ['admin', 'cssd', 'ruangan'] }
+src/App.tsx:71:  const visibleNavItems = navItems.filter(item => item.roles.includes(appRole));
+src/App.tsx:74:  const [currentUsername, setCurrentUsername] = useState<string>("");
+src/App.tsx:97:    // Only subscribe to tenant-protected settings when user is authenticated and active
+src/App.tsx:98:    if (!authUser || !userProfile || !isUserActive(userProfile)) return;
+src/App.tsx:114:  }, [authUser, userProfile]);
+src/App.tsx:117:    const unsub = onAuthStateChanged(auth, async (user) => {
+src/App.tsx:133:            await signOut(auth);
+src/App.tsx:164:              await signOut(auth);
+src/App.tsx:177:            setCurrentRole(migrated.role as any);
+src/App.tsx:188:                role: "ADMIN",
+src/App.tsx:189:                tenantId: "RSUD-BENDA",
+src/App.tsx:204:              await signOut(auth);
+src/App.tsx:223:    if (authUser) {
+src/App.tsx:224:      await signOut(auth);
+src/App.tsx:243:      role: "operator",
+src/App.tsx:255:    if (authUser) {
+src/App.tsx:256:      await signOut(auth);
+src/App.tsx:261:    if (!isDemoMode && authUser && userProfile && (userProfile.role === "admin" || userProfile.role === "supervisor")) {
+src/App.tsx:264:  }, [authUser, userProfile, isDemoMode]);
+src/App.tsx:288:  if (!isDemoMode && (!authUser || !userProfile)) {
+src/App.tsx:297:  const handleRoleChange = (role: 'admin' | 'operator' | 'supervisor') => {
+src/App.tsx:298:    setCurrentRole(role);
+src/App.tsx:299:    if (role === 'admin' || role === 'supervisor') {
+src/App.tsx:300:      setCurrentUsername(userProfile?.name || "Administrator");
+src/App.tsx:351:          <div className={`rounded-full bg-slate-900 border border-slate-700 text-white overflow-hidden flex items-center justify-center w-8 h-8 ${!userProfile?.photoUrl ? "p-1.5" : ""}`}>
+src/App.tsx:352:            {userProfile?.photoUrl ? <img src={userProfile.photoUrl} alt="Foto" className="w-8 h-8 rounded-full object-cover" /> : <User className="w-4 h-4 text-cyan-300" />}
+src/App.tsx:355:            <span className="text-xs font-bold text-white block truncate">{userProfile?.name}</span>
+src/App.tsx:356:            <span className="text-[9px] text-cyan-200 font-mono font-bold uppercase tracking-wider block">{userProfile?.role}</span>
+src/App.tsx:474:                  <div className={`rounded-full bg-slate-900 border border-slate-700 text-white overflow-hidden flex items-center justify-center w-8 h-8 ${!userProfile?.photoUrl ? "p-1.5" : ""}`}>
+src/App.tsx:475:                    {userProfile?.photoUrl ? <img src={userProfile.photoUrl} alt="Foto" className="w-8 h-8 rounded-full object-cover" /> : <User className="w-4 h-4 text-cyan-300" />}
+src/App.tsx:478:                    <span className="text-xs font-bold text-white block truncate">{userProfile?.name}</span>
+src/App.tsx:479:                    <span className="text-[9px] text-cyan-200 font-mono font-bold uppercase tracking-wider block">{userProfile?.role}</span>
+src/App.tsx:540:                      currentUsername={currentUsername} 
+src/App.tsx:552:                          currentUsername={currentUsername} 
+src/App.tsx:559:                          currentUsername={currentUsername} 
+src/App.tsx:567:                  {currentTab === "machine_test" && <MachineTest currentUsername={currentUsername} currentRole={currentRole} currentUserProfile={userProfile} isDemoMode={isDemoMode} />}
+src/App.tsx:568:                  {currentTab === "sterilization" && <Sterilization currentUsername={currentUsername} isDemoMode={isDemoMode} />}
+src/App.tsx:569:                  {currentTab === "storage" && <Storage currentUsername={currentUsername} currentRole={currentRole} isDemoMode={isDemoMode} />}
+src/App.tsx:570:                  {currentTab === "distribution" && <Distribution currentUsername={currentUsername} isDemoMode={isDemoMode} />}
+src/App.tsx:572:                  {currentTab === "recall" && <RecallModule currentUsername={currentUsername} currentRole={currentRole} isDemoMode={isDemoMode} />}
+src/App.tsx:574:                  {currentTab === "hold" && <HoldKarantina currentUsername={currentUsername} currentRole={currentRole} isDemoMode={isDemoMode} />}
+src/App.tsx:576:                  {currentTab === "inventory" && <Inventory currentUsername={currentUsername} currentUserProfile={userProfile} mode="inventory" initialTab="bmhp" />}
+src/App.tsx:578:                  {currentTab === "bmhp_linen" && <BmhpLinenModule currentUsername={currentUsername} currentUserProfile={userProfile} isDemoMode={isDemoMode} />}
+src/App.tsx:581:                    <StockDiscrepancy currentUsername={currentUsername} currentRole={currentRole} isDemoMode={isDemoMode} />
+src/App.tsx:586:                      currentUsername={currentUsername} 
+src/App.tsx:587:                      currentUserProfile={userProfile} 
+src/App.tsx:593:                  {currentTab === "master_data" && <Inventory currentUsername={currentUsername} currentUserProfile={userProfile} mode="master" />}
+src/App.tsx:594:                  {currentTab === "activity_log" && <ActivityLog currentUsername={currentUsername} isDemoMode={isDemoMode} defaultFilter="all" />}
+src/App.tsx:595:                  {currentTab === "administrasi" && <AdministrasiModule currentUser={userProfile} />}
+src/App.tsx:596:                  {currentTab === "settings" && <SettingsPanel currentRole={currentRole} currentUser={userProfile} />}
+src/types.ts:9:  tenantId: string; // Permanent immutable ID, e.g. "RSUD-BENDA"
+src/types.ts:37:  tenantId: string;
+src/types.ts:52:  role: UserRole;
+src/types.ts:53:  tenantId: string; // e.g. RSUD-BENDA
+src/types.ts:95:  tenantId?: string;
+src/types.ts:109:  tenantId?: string;
+src/types.ts:126:  tenantId: string;
+src/types.ts:152:  tenantId: string;
+src/types.ts:172:  tenantId: string;
+src/types.ts:190:  tenantId?: string;
+src/types.ts:203:  tenantId: string;
+src/types.ts:225:  tenantId: string;
+src/types.ts:366:  tenantId?: string;
+src/types.ts:409:  tenantId?: string;
+src/types.ts:435:  tenantId: string; // TENANT_ID e.g. RSUD-BENDA
+src/types.ts:469:  tenantId: string;
+src/types.ts:482:  tenantId: string;

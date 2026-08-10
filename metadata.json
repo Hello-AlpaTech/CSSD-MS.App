@@ -1,0 +1,11 @@
+{
+  "name": "Remix: CSSD-MS.App",
+  "description": "Sistem Manajemen Central Sterile Services Department (CSSD) rumah sakit untuk sterilisasi, pelacakan instrumen medis, inventaris, dan distribusi aman offline-first.",
+  "requestFramePermissions": [
+    "bluetooth",
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "projectId": "e-cssd-byalpatech",
+  "appId": "1:228791884093:web:3f03ce962706d9ec9dcd54",
+  "apiKey": "AIzaSyAvnlTNOK57CPApYYHz8tqr313V8F3IuQ8",
+  "authDomain": "e-cssd-byalpatech.firebaseapp.com",
+  "databaseURL": "https://e-cssd-byalpatech-default-rtdb.asia-southeast1.firebasedatabase.app",
+  "firestoreDatabaseId": "(default)",
+  "storageBucket": "e-cssd-byalpatech.firebasestorage.app",
+  "messagingSenderId": "228791884093",
+  "measurementId": "G-CT0YDXB1GV",
+  "oAuthClientId": "",
+  "recaptchaSiteKey": ""
+}

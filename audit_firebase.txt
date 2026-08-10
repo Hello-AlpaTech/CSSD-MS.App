@@ -1,0 +1,353 @@
+src/components/BmhpLinenModule.tsx:4:  onSnapshot, 
+src/components/BmhpLinenModule.tsx:9:  setDoc, 
+src/components/BmhpLinenModule.tsx:10:  addDoc, 
+src/components/BmhpLinenModule.tsx:148:    const unsubUnits = onSnapshot(collection(db, "master_units"), (snap) => {
+src/components/BmhpLinenModule.tsx:160:    const unsubBmhp = onSnapshot(collection(db, "bmhp_catalog"), (snap) => {
+src/components/BmhpLinenModule.tsx:166:    const unsubRequests = onSnapshot(collection(db, "bmhp_requests"), (snap) => {
+src/components/BmhpLinenModule.tsx:172:    const unsubDists = onSnapshot(collection(db, "bmhp_distributions"), (snap) => {
+src/components/BmhpLinenModule.tsx:178:    const unsubRets = onSnapshot(collection(db, "bmhp_returns"), (snap) => {
+src/components/BmhpLinenModule.tsx:184:    const unsubLinen = onSnapshot(collection(db, "linen_catalog"), (snap) => {
+src/components/BmhpLinenModule.tsx:190:    const unsubLinenReqs = onSnapshot(collection(db, "linen_requests"), (snap) => {
+src/components/BmhpLinenModule.tsx:196:    const unsubLinenRets = onSnapshot(collection(db, "linen_returns"), (snap) => {
+src/components/BmhpLinenModule.tsx:226:        setDoc(doc(db, "bmhp_catalog", item.id!), item, { merge: true }).catch(() => {});
+src/components/BmhpLinenModule.tsx:239:        setDoc(doc(db, "linen_catalog", item.id!), item, { merge: true }).catch(() => {});
+src/components/BmhpLinenModule.tsx:296:      await setDoc(doc(db, "bmhp_catalog", bmhpId), data, { merge: true });
+src/components/RecallModule.tsx:5:  onSnapshot, 
+src/components/RecallModule.tsx:7:  setDoc, 
+src/components/RecallModule.tsx:8:  getDoc, 
+src/components/RecallModule.tsx:65:    const unsub = onSnapshot(collection(db, "recall_logs"), (snap) => {
+src/components/RecallModule.tsx:87:      const lsSnap = await getDoc(doc(db, "instrument_live_state", cleanId));
+src/components/RecallModule.tsx:98:        const mSnap = await getDoc(doc(db, "master_instruments", cleanId));
+src/components/RecallModule.tsx:149:        await setDoc(doc(db, "instrument_live_state", cleanTarget), {
+src/components/RecallModule.tsx:162:        await setDoc(doc(db, "instrument_live_state", cleanTarget), {
+src/components/RecallModule.tsx:184:      await setDoc(doc(db, "recall_logs", rclId), newRecallDoc);
+src/components/Sterilization.tsx:5:  updateDoc, 
+src/components/Sterilization.tsx:7:  onSnapshot, 
+src/components/Sterilization.tsx:10:  addDoc,
+src/components/Sterilization.tsx:11:  setDoc,
+src/components/Sterilization.tsx:14:  getDoc,
+src/components/Sterilization.tsx:15:  getDocs,
+src/components/Sterilization.tsx:437:    const unsubMach = onSnapshot(collection(db, "machines"), (snap) => {
+src/components/Sterilization.tsx:449:    const unsubMasterMach = onSnapshot(collection(db, "master_machines"), (snap) => {
+src/components/Sterilization.tsx:489:    const unsubLogs = onSnapshot(
+src/components/Sterilization.tsx:603:            const snapBD = await getDocs(qBD);
+src/components/Sterilization.tsx:653:        await addDoc(collection(db, "machine_cycles"), {
+src/components/Sterilization.tsx:793:        await updateDoc(logRef, {
+src/components/Sterilization.tsx:805:            const instDoc = await getDoc(doc(db, "instruments", log.instrumentId));
+src/components/Sterilization.tsx:813:          await addDoc(collection(db, "sterile_stock"), {
+src/components/Sterilization.tsx:829:          await addDoc(collection(db, "activity_logs"), {
+src/components/Sterilization.tsx:844:            setDoc(lsRef, {
+src/components/Sterilization.tsx:869:            setDoc(lsRef, {
+src/components/Dashboard.tsx:4:import { collection, onSnapshot, query, orderBy, limit, getDocs, where } from "firebase/firestore";
+src/components/Dashboard.tsx:131:    const unsub = onSnapshot(query(wfCol, orderBy("createdAt", "desc")), (snap) => {
+src/components/Dashboard.tsx:194:    const unsubStock = onSnapshot(stockCol, (snap) => {
+src/components/Dashboard.tsx:214:    const unsubReq = onSnapshot(reqCol, (snap) => {
+src/components/Dashboard.tsx:227:    const unsubMach = onSnapshot(machCol, (snap) => {
+src/components/Dashboard.tsx:243:    const unsubWf = onSnapshot(query(wfCol, orderBy("updatedAt", "desc"), limit(4)), (snap) => {
+src/components/Dashboard.tsx:253:    const unsubEnv = onSnapshot(query(envCol, orderBy("timestamp", "desc"), limit(1)), (snap) => {
+src/components/Dashboard.tsx:261:    const unsubTest = onSnapshot(query(testCol, orderBy("createdAt", "desc")), (snap) => {
+src/components/Dashboard.tsx:314:          getDocs(collection(db, "instruments")),
+src/components/Dashboard.tsx:315:          getDocs(collection(db, "unit_stock")),
+src/components/Dashboard.tsx:316:          getDocs(collection(db, "workflow_logs")),
+src/components/Dashboard.tsx:317:          getDocs(collection(db, "sterile_stock"))
+src/components/Dashboard.tsx:554:      const snap = await getDocs(stockCol);
+src/components/Dashboard.tsx:618:          const wfSnap = await getDocs(collection(db, "workflow_logs"));
+src/components/ActivityLog.tsx:3:import { collection, onSnapshot, query, orderBy, limit } from "firebase/firestore";
+src/components/ActivityLog.tsx:127:      const unsubscribe = onSnapshot(
+src/components/WebhookLog.tsx:3:import { collection, onSnapshot, query, orderBy, deleteDoc, doc, updateDoc } from "firebase/firestore";
+src/components/WebhookLog.tsx:55:    const unsub = onSnapshot(q, (snapshot) => {
+src/components/WebhookLog.tsx:97:      const promises = selectedIds.map(id => deleteDoc(doc(db, "webhooks", id)));
+src/components/WebhookLog.tsx:127:      await updateDoc(doc(db, "webhooks", log.id), {
+src/components/WebhookLog.tsx:151:      await updateDoc(doc(db, "webhooks", log.id), {
+src/components/WebhookLog.tsx:158:      await updateDoc(doc(db, "webhooks", log.id), {
+src/components/Penerimaan.tsx:5:import { collection, onSnapshot, query, where, getDocs, doc } from 'firebase/firestore';
+src/components/Penerimaan.tsx:82:    const unsubInst = onSnapshot(collection(db, "instruments"), (snap) => {
+src/components/Penerimaan.tsx:88:    const unsubUnits = onSnapshot(collection(db, "master_units"), (snap) => {
+src/components/Penerimaan.tsx:128:      const unsub = onSnapshot(q, (snap) => {
+src/components/Distribution.tsx:5:  onSnapshot, 
+src/components/Distribution.tsx:6:  updateDoc, 
+src/components/Distribution.tsx:7:  deleteDoc,
+src/components/Distribution.tsx:9:  addDoc, 
+src/components/Distribution.tsx:11:  getDocs,
+src/components/Distribution.tsx:14:  setDoc,
+src/components/Distribution.tsx:15:  getDoc
+src/components/Distribution.tsx:190:    const unsubReq = onSnapshot(collection(db, "distribution_logs"), (snap) => {
+src/components/Distribution.tsx:203:    const unsubStock = onSnapshot(
+src/components/Distribution.tsx:228:    const unsubCat = onSnapshot(collection(db, "instruments"), (snap) => {
+src/components/Distribution.tsx:238:    const unsubLogs = onSnapshot(collection(db, "workflow_logs"), (snap) => {
+src/components/Distribution.tsx:247:    const unsubUnits = onSnapshot(collection(db, "master_units"), (snap) => {
+src/components/Distribution.tsx:704:      await addDoc(collection(db, "activity_logs"), {
+src/components/Distribution.tsx:720:        const snap = await getDocs(q);
+src/components/Distribution.tsx:722:          await updateDoc(doc(db, "sterile_stock", snap.docs[0].id), {
+src/components/Distribution.tsx:730:            setDoc(lsRef, {
+src/components/Distribution.tsx:740:            updateDoc(instRef, {
+src/components/Distribution.tsx:747:            setDoc(auditRef, {
+src/components/Distribution.tsx:759:        const snapWf = await getDocs(qWf);
+src/components/Distribution.tsx:772:          await updateDoc(doc(db, "workflow_logs", wfDoc.id), {
+src/components/Distribution.tsx:788:          const snapWf2 = await getDocs(qWf2);
+src/components/Distribution.tsx:791:            await updateDoc(doc(db, "workflow_logs", wfDoc.id), {
+src/components/Distribution.tsx:800:      await addDoc(collection(db, "distribution_logs"), newRecord);
+src/components/Distribution.tsx:831:          const stockSnap = await getDoc(stockRef);
+src/components/Distribution.tsx:834:            await updateDoc(stockRef, {
+src/components/Distribution.tsx:839:            await setDoc(stockRef, {
+src/components/Distribution.tsx:890:          const snapStock = await getDocs(qStock);
+src/components/Distribution.tsx:892:            await updateDoc(doc(db, "sterile_stock", snapStock.docs[0].id), {
+src/components/Distribution.tsx:899:          const snapWf = await getDocs(qWf);
+src/components/Distribution.tsx:902:            await updateDoc(doc(db, "workflow_logs", wfDoc.id), {
+src/components/Distribution.tsx:908:             const snapWf2 = await getDocs(qWf2);
+src/components/Distribution.tsx:910:               await updateDoc(doc(db, "workflow_logs", snapWf2.docs[0].id), {
+src/components/Distribution.tsx:918:      await deleteDoc(doc(db, "distribution_logs", req.id));
+src/components/Packaging.tsx:4:import { collection, addDoc, updateDoc, doc, serverTimestamp, query, where, onSnapshot, getDocs, setDoc } from 'firebase/firestore';
+src/components/Packaging.tsx:35:    const unsub = onSnapshot(collection(db, "instruments"), (snap) => {
+src/components/Packaging.tsx:83:    const unsub = onSnapshot(q, (snap) => {
+src/components/Packaging.tsx:189:        const snapSearch = await getDocs(qSearch);
+src/components/Packaging.tsx:292:            await addDoc(collection(db, "workflow_logs"), {
+src/components/Packaging.tsx:322:            await addDoc(collection(db, "activity_logs"), {
+src/components/Packaging.tsx:334:              setDoc(lsRef, {
+src/components/Packaging.tsx:387:        await updateDoc(doc(db, "workflow_logs", docId), {
+src/components/Packaging.tsx:434:          await updateDoc(doc(db, "workflow_logs", docId), {
+src/components/Packaging.tsx:446:              await setDoc(lsRef, {
+src/components/ReportingDashboard.tsx:3:import { collection, onSnapshot, query, orderBy, limit, getDocs, where } from "firebase/firestore";
+src/components/ReportingDashboard.tsx:210:          const snapInst = await getDocs(query(collection(db, "master_instruments")));
+src/components/ReportingDashboard.tsx:220:          const snapWf = await getDocs(query(collection(db, "workflow_logs"), orderBy("createdAt", "desc"), limit(200)));
+src/components/ReportingDashboard.tsx:230:          const snapStock = await getDocs(query(collection(db, "sterile_stock")));
+src/components/ReportingDashboard.tsx:240:          const snapMach = await getDocs(query(collection(db, "machines")));
+src/components/ReportingDashboard.tsx:245:          const snapTest = await getDocs(query(collection(db, "machine_test_logs"), orderBy("createdAt", "desc"), limit(100)));
+src/components/ReportingDashboard.tsx:250:          const snapAudit = await getDocs(query(collection(db, "audit_logs"), orderBy("timestamp", "desc"), limit(300)));
+src/components/ReportingDashboard.tsx:260:          const snapUsers = await getDocs(query(collection(db, "users")));
+src/components/ReportingDashboard.tsx:270:          const snapSets = await getDocs(query(collection(db, "master_sets")));
+src/components/HoldKarantina.tsx:5:  onSnapshot, 
+src/components/HoldKarantina.tsx:7:  setDoc, 
+src/components/HoldKarantina.tsx:8:  getDoc,
+src/components/HoldKarantina.tsx:91:    const unsubLiveState = onSnapshot(collection(db, "instrument_live_state"), (snap) => {
+src/components/HoldKarantina.tsx:149:      let docSnap = await getDoc(doc(db, "master_instruments", cleanId));
+src/components/HoldKarantina.tsx:151:        docSnap = await getDoc(doc(db, "instruments", cleanId));
+src/components/HoldKarantina.tsx:157:        const lsSnap = await getDoc(doc(db, "instrument_live_state", cleanId));
+src/components/HoldKarantina.tsx:205:      await setDoc(doc(db, "instrument_live_state", cleanId), {
+src/components/HoldKarantina.tsx:268:      await setDoc(doc(db, "instrument_live_state", cleanId), {
+src/components/Decontamination.tsx:4:import { collection, onSnapshot, query, where, updateDoc, doc, serverTimestamp, setDoc, getDoc } from 'firebase/firestore';
+src/components/Decontamination.tsx:47:    const unsub = onSnapshot(q, (snap) => {
+src/components/Decontamination.tsx:104:      const lsSnap = await getDoc(doc(db, "instrument_live_state", cleanId));
+src/components/Decontamination.tsx:111:        const masterSnap = await getDoc(doc(db, "master_instruments", cleanId));
+src/components/Decontamination.tsx:176:        await setDoc(lsRef, {
+src/components/Decontamination.tsx:256:              await setDoc(lsRef, {
+src/components/Decontamination.tsx:267:              updateDoc(instRef, {
+src/components/Decontamination.tsx:289:        await updateDoc(doc(db, "workflow_logs", docData.firestoreDocId), {
+src/components/PickupTicket.tsx:5:import { collection, doc, getDoc, onSnapshot, query, where } from 'firebase/firestore';
+src/components/PickupTicket.tsx:57:    const unsub = onSnapshot(q, (snap) => {
+src/components/PickupTicket.tsx:85:          const snap = await getDoc(ref);
+src/components/PickupTicket.tsx:131:            const liveSnap = await getDoc(liveRef);
+src/components/SettingsPanel.tsx:4:import { collection, onSnapshot, doc, setDoc, deleteDoc, getDoc, getDocs } from "firebase/firestore";
+src/components/SettingsPanel.tsx:43:    const unsubUsers = onSnapshot(collection(db, "users"), (snap) => {
+src/components/SettingsPanel.tsx:51:      const snap = await getDoc(doc(db, "settings", "general"));
+src/components/SettingsPanel.tsx:70:        const snap = await getDocs(collection(db, colName));
+src/components/SettingsPanel.tsx:97:      const snap = await getDocs(collection(db, 'workflow_logs'));
+src/components/SettingsPanel.tsx:139:        const snap = await getDocs(collection(db, colName));
+src/components/SettingsPanel.tsx:141:          await deleteDoc(doc(db, colName, docSnap.id));
+src/components/SettingsPanel.tsx:160:         const snap = await getDocs(collection(db, colName));
+src/components/SettingsPanel.tsx:165:                 await deleteDoc(doc(db, colName, d.id));
+src/components/SettingsPanel.tsx:190:      await setDoc(doc(db, "settings", "general"), { appName, appIcon: finalIcon }, { merge: true });
+src/components/SettingsPanel.tsx:221:      const docSnap = await getDoc(doc(db, "users", emailKey));
+src/components/SettingsPanel.tsx:227:      await setDoc(doc(db, "users", emailKey), {
+src/components/SettingsPanel.tsx:256:        await deleteDoc(doc(db, "users", email.toLowerCase()));
+src/components/MachineTest.tsx:5:  addDoc, 
+src/components/MachineTest.tsx:6:  onSnapshot, 
+src/components/MachineTest.tsx:9:  deleteDoc, 
+src/components/MachineTest.tsx:12:  updateDoc, 
+src/components/MachineTest.tsx:13:  setDoc,
+src/components/MachineTest.tsx:14:  getDocs,
+src/components/MachineTest.tsx:233:    const unsub = onSnapshot(collection(db, "master_machines"), (snap) => {
+src/components/MachineTest.tsx:279:      const unsub = onSnapshot(q, (snap) => {
+src/components/MachineTest.tsx:316:      await updateDoc(mRef, {
+src/components/MachineTest.tsx:503:        const testDocRef = await addDoc(collection(db, "machine_test_logs"), newLog);
+src/components/MachineTest.tsx:506:        await addDoc(collection(db, "bowie_dick_tests"), {
+src/components/MachineTest.tsx:516:          await updateDoc(mRef, {
+src/components/MachineTest.tsx:564:        await deleteDoc(doc(db, "machine_test_logs", id));
+src/components/MachineTest.tsx:608:      await setDoc(doc(db, "master_machines", safeId), payload, { merge: true });
+src/components/OriginUnitStock.tsx:3:import { collection, onSnapshot, query, where } from "firebase/firestore";
+src/components/OriginUnitStock.tsx:66:      const unsub = onSnapshot(q, (snap) => {
+src/components/OriginUnitStock.tsx:79:      const unsubMaster = onSnapshot(collection(db, "instruments"), (snap) => {
+src/components/OnProcessCSSD.tsx:3:import { collection, onSnapshot, query, where } from "firebase/firestore";
+src/components/OnProcessCSSD.tsx:123:    const unsubWf = onSnapshot(collection(db, "workflow_logs"), (snap) => {
+src/components/Inventory.tsx:5:import { collection, onSnapshot, doc, setDoc, updateDoc, addDoc, serverTimestamp, query, orderBy, deleteDoc, getDoc, runTransaction } from "firebase/firestore";
+src/components/Inventory.tsx:214:          await setDoc(doc(db, "master_instruments", finalId), masterData, { merge: true });
+src/components/Inventory.tsx:215:          await setDoc(doc(db, "instrument_live_state", finalId), {
+src/components/Inventory.tsx:223:          await setDoc(doc(db, "instruments", finalId), {
+src/components/Inventory.tsx:257:    const unsubMasterInst = onSnapshot(collection(db, "master_instruments"), (snapMaster) => {
+src/components/Inventory.tsx:258:      onSnapshot(collection(db, "instruments"), (snapInst) => {
+src/components/Inventory.tsx:259:        onSnapshot(collection(db, "inventory"), (snapInv) => {
+src/components/Inventory.tsx:302:    const unsubBmhp = onSnapshot(collection(db, "bmhp_catalog"), (snap) => {
+src/components/Inventory.tsx:310:    const unsubLinen = onSnapshot(collection(db, "linen_catalog"), (snap) => {
+src/components/Inventory.tsx:318:    const unsubUnits = onSnapshot(collection(db, "master_units"), (snap) => {
+src/components/Inventory.tsx:324:    const unsubMachines = onSnapshot(collection(db, "master_machines"), (snap) => {
+src/components/Inventory.tsx:370:        await deleteDoc(doc(db, deleteModal.collectionName, id));
+src/components/Inventory.tsx:417:    const docSnap = await getDoc(docRef);
+src/components/Inventory.tsx:423:      await setDoc(docRef, updatedForm);
+src/components/Inventory.tsx:432:        await setDoc(stockDocRef, {
+src/components/Inventory.tsx:627:          const docSnap = await getDoc(docRef);
+src/components/Inventory.tsx:630:            await setDoc(docRef, {
+src/components/Inventory.tsx:641:            await setDoc(docRef, {
+src/components/Inventory.tsx:656:            await setDoc(stockDocRef, {
+src/components/Inventory.tsx:765:      await setDoc(doc(db, collName, bmhpForm.id), { 
+src/components/Inventory.tsx:787:      await setDoc(doc(db, "master_units", safeId), { ...unitForm, id: safeId });
+src/components/Inventory.tsx:801:      await setDoc(doc(db, "master_machines", safeMachineId), { ...machineForm, id: safeMachineId });
+src/components/Inventory.tsx:817:    const unsub = onSnapshot(q, (snap) => {
+src/components/Inventory.tsx:828:    // actually, let's just use getDocs to avoid memory leak if they open close many times.
+src/components/Inventory.tsx:829:    import("firebase/firestore").then(({ getDocs }) => {
+src/components/Inventory.tsx:830:        getDocs(q).then((snap) => {
+src/components/Inventory.tsx:1023:      await updateDoc(doc(db, collName, adjustTarget.id), updateData);
+src/components/Inventory.tsx:1026:      await addDoc(collection(db, logCollName), {
+src/components/SetCompositionAndImport.tsx:5:  onSnapshot, 
+src/components/SetCompositionAndImport.tsx:7:  setDoc, 
+src/components/SetCompositionAndImport.tsx:8:  getDoc, 
+src/components/SetCompositionAndImport.tsx:9:  getDocs, 
+src/components/SetCompositionAndImport.tsx:95:    const unsubSets = onSnapshot(collection(db, "master_sets"), (snap) => {
+src/components/SetCompositionAndImport.tsx:118:    const unsubComps = onSnapshot(collection(db, "master_set_components"), (snap) => {
+src/components/SetCompositionAndImport.tsx:139:    const unsubInst = onSnapshot(collection(db, "master_instruments"), (snap) => {
+src/components/SetCompositionAndImport.tsx:289:      await setDoc(setRef, {
+src/components/SetCompositionAndImport.tsx:306:        await setDoc(compRef, {
+src/components/SetCompositionAndImport.tsx:420:      const snapInst = await getDocs(collection(db, "master_instruments"));
+src/components/SetCompositionAndImport.tsx:534:        await setDoc(instRef, {
+src/components/SetCompositionAndImport.tsx:553:        await setDoc(invRef, {
+src/components/SetCompositionAndImport.tsx:565:        await setDoc(liveRef, {
+src/components/InventoryRegistrationForm.tsx:20:import { collection, doc, getDoc, getDocs, onSnapshot, query, setDoc, limit, runTransaction } from "firebase/firestore";
+src/components/InventoryRegistrationForm.tsx:129:        const counterSnap = await getDoc(counterRef);
+src/components/InventoryRegistrationForm.tsx:135:          const snapInst = await getDocs(query(collection(db, "master_instruments"), limit(100)));
+src/components/InventoryRegistrationForm.tsx:172:    const unsub = onSnapshot(collection(db, "master_units"), (snap) => {
+src/components/InventoryRegistrationForm.tsx:281:      const counterSnap = await getDoc(counterRef);
+src/components/InventoryRegistrationForm.tsx:287:        const snapInst = await getDocs(query(collection(db, "master_instruments"), limit(100)));
+src/components/InventoryRegistrationForm.tsx:433:        await setDoc(doc(db, "master_instruments", finalId), {
+src/components/InventoryRegistrationForm.tsx:442:          await setDoc(doc(db, "instrument_live_state", finalId), {
+src/components/InventoryRegistrationForm.tsx:452:        await setDoc(doc(db, "instruments", finalId), {
+src/components/InventoryRegistrationForm.tsx:465:          await setDoc(doc(collection(db, "audit_logs")), {
+src/components/InventoryRegistrationForm.tsx:478:      const invSnap = await getDoc(invRef);
+src/components/InventoryRegistrationForm.tsx:485:        await setDoc(invRef, {
+src/components/InstrumentHistoryModal.tsx:25:import { collection, getDocs, onSnapshot, query, orderBy, limit } from "firebase/firestore";
+src/components/InstrumentHistoryModal.tsx:64:    const unsub = onSnapshot(
+src/components/Storage.tsx:5:  onSnapshot, 
+src/components/Storage.tsx:6:  addDoc, 
+src/components/Storage.tsx:11:  getDocs,
+src/components/Storage.tsx:12:  getDoc,
+src/components/Storage.tsx:13:  updateDoc,
+src/components/Storage.tsx:14:  deleteDoc,
+src/components/Storage.tsx:17:  setDoc
+src/components/Storage.tsx:162:    const unsubStock = onSnapshot(collection(db, "sterile_stock"), (snap) => {
+src/components/Storage.tsx:184:    const unsubEnv = onSnapshot(envQuery, (snap) => {
+src/components/Storage.tsx:195:    const unsubGrids = onSnapshot(doc(db, "settings", "storage_grids"), (docSnap) => {
+src/components/Storage.tsx:259:        await addDoc(collection(db, "environmental_logs"), newLog);
+src/components/Storage.tsx:287:        await deleteDoc(doc(db, "environmental_logs", logId));
+src/components/Storage.tsx:302:          return deleteDoc(doc(db, "environmental_logs", log.id));
+src/components/Storage.tsx:410:      let snap = await getDocs(q);
+src/components/Storage.tsx:417:        snap = await getDocs(qInst);
+src/components/Storage.tsx:429:        const targetDocs = unstoredDocs.length > 0 ? unstoredDocs : snap.docs;
+src/components/Storage.tsx:431:        if (targetDocs.length > 1 && !selectedStockForShelf) {
+src/components/Storage.tsx:432:          const mapped: SterileStock[] = targetDocs.map(d => ({
+src/components/Storage.tsx:437:          alert(`Ditemukan ${targetDocs.length} data paket terpisah untuk ID Instrumen ini. Silakan pilih salah satu paket di bawah!`);
+src/components/Storage.tsx:444:          stockDoc = targetDocs[0];
+src/components/Storage.tsx:455:      await updateDoc(doc(db, "sterile_stock", stockDoc.id), {
+src/components/Storage.tsx:463:        setDoc(lsRef, {
+src/components/Storage.tsx:473:        updateDoc(instRef, {
+src/components/Storage.tsx:480:        setDoc(auditRef, {
+src/components/Storage.tsx:491:        await updateDoc(doc(db, "workflow_logs", actualLotNumber), {
+src/components/Storage.tsx:498:      await addDoc(collection(db, "activity_logs"), {
+src/components/Storage.tsx:527:      await updateDoc(doc(db, "sterile_stock", stockItem.id), {
+src/components/Storage.tsx:533:        await updateDoc(doc(db, "workflow_logs", stockItem.lotNumber), {
+src/components/Storage.tsx:559:      await updateDoc(doc(db, "sterile_stock", editingStock.id), {
+src/components/Storage.tsx:601:      await deleteDoc(doc(db, "sterile_stock", stockItem.id));
+src/components/Storage.tsx:667:        await deleteDoc(doc(db, "sterile_stock", id));
+src/components/Storage.tsx:714:      await setDoc(doc(db, "settings", "storage_grids"), {
+src/components/Storage.tsx:735:      await setDoc(doc(db, "settings", "storage_grids"), {
+src/components/Storage.tsx:779:      await setDoc(doc(db, "settings", "storage_grids"), {
+src/components/Storage.tsx:865:      const catalogDoc = await getDoc(doc(db, "instruments", stock.instrumentId));
+src/components/Storage.tsx:868:      const logDoc = await getDoc(doc(db, "workflow_logs", stock.lotNumber));
+src/components/Storage.tsx:928:        await setDoc(doc(db, "settings", "storage_grids"), {
+src/components/TenantManagement.tsx:4:import { collection, onSnapshot, doc, setDoc, updateDoc, serverTimestamp, query, where, getDocs } from "firebase/firestore";
+src/components/TenantManagement.tsx:84:    const unsubTenants = onSnapshot(
+src/components/TenantManagement.tsx:144:          setDoc(doc(db, "master_tenants", DEFAULT_TENANT_ID), defaultTenant).catch(() => {});
+src/components/TenantManagement.tsx:156:    const unsubInst = onSnapshot(
+src/components/TenantManagement.tsx:267:      await setDoc(doc(db, "master_tenants", rawId), newTenantPayload);
+src/components/TenantManagement.tsx:280:        await setDoc(doc(db, "tenant_installations", inst.id), {
+src/components/TenantManagement.tsx:380:      await updateDoc(doc(db, "master_tenants", selectedTenant.tenantId), updatedPayload);
+src/components/TenantManagement.tsx:464:      await updateDoc(doc(db, "master_tenants", selectedTenant.tenantId), updateData);
+src/components/TenantManagement.tsx:530:      await setDoc(doc(db, "tenant_installations", docId), payload);
+src/components/UserManagement.tsx:4:import { collection, onSnapshot, doc, setDoc, updateDoc, serverTimestamp } from "firebase/firestore";
+src/components/UserManagement.tsx:68:    const unsub = onSnapshot(
+src/components/UserManagement.tsx:233:        await updateDoc(userDocRef, {
+src/components/UserManagement.tsx:348:        await setDoc(doc(db, "users", emailKey), newUserPayload);
+src/components/UserManagement.tsx:390:      await updateDoc(doc(db, "users", user.email), {
+src/components/Login.tsx:3:import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+src/components/Login.tsx:23:        const snap = await getDoc(doc(db, "settings", "general"));
+src/components/Login.tsx:72:        const snap = await getDoc(doc(db, "users", emailKey));
+src/components/Login.tsx:84:          const usersSnap = await getDocs(collection(db, "users"));
+src/components/StockDiscrepancy.tsx:5:  onSnapshot, 
+src/components/StockDiscrepancy.tsx:7:  setDoc, 
+src/components/StockDiscrepancy.tsx:8:  updateDoc, 
+src/components/StockDiscrepancy.tsx:9:  getDoc, 
+src/components/StockDiscrepancy.tsx:227:      const unsubInst = onSnapshot(collection(db, "master_instruments"), (snap) => {
+src/components/StockDiscrepancy.tsx:235:      const unsubLive = onSnapshot(collection(db, "instrument_live_state"), (snap) => {
+src/components/StockDiscrepancy.tsx:243:      const unsubCases = onSnapshot(collection(db, "discrepancy_cases"), (snap) => {
+src/components/StockDiscrepancy.tsx:395:      await setDoc(doc(db, "discrepancy_cases", selectedCase.id), updatedCase, { merge: true });
+src/components/StockDiscrepancy.tsx:439:          await setDoc(doc(db, "instrument_live_state", resolveForm.scannedUnitId), {
+src/components/StockDiscrepancy.tsx:491:      await setDoc(doc(db, "discrepancy_cases", selectedCase.id), updatedCase, { merge: true });
+src/components/AdministrasiModule.tsx:4:import { collection, onSnapshot, doc, setDoc, query, where, getDoc, getDocs, updateDoc, serverTimestamp } from "firebase/firestore";
+src/components/AdministrasiModule.tsx:57:    const unsub = onSnapshot(doc(db, "master_tenants", tenantId), (docSnap) => {
+src/components/AdministrasiModule.tsx:97:    const unsub = onSnapshot(q, (snap) => {
+src/components/AdministrasiModule.tsx:122:        const docSnap = await getDoc(doc(db, "settings", `expired_rules_${tenantId}`));
+src/components/AdministrasiModule.tsx:130:          await setDoc(doc(db, "settings", `expired_rules_${tenantId}`), {
+src/components/AdministrasiModule.tsx:151:        const snap = await getDocs(q);
+src/components/AdministrasiModule.tsx:189:      await updateDoc(ref, updateData);
+src/components/AdministrasiModule.tsx:247:      await setDoc(instRef, instPayload);
+src/components/AdministrasiModule.tsx:281:      const oldDoc = await getDoc(configRef);
+src/components/AdministrasiModule.tsx:284:      await setDoc(configRef, {
+src/lib/receptionTransaction.ts:9:  getDoc, 
+src/lib/receptionTransaction.ts:10:  getDocs, 
+src/lib/receptionTransaction.ts:11:  setDoc, 
+src/lib/receptionTransaction.ts:12:  updateDoc, 
+src/lib/receptionTransaction.ts:177:    const snap = await getDoc(liveRef);
+src/lib/receptionTransaction.ts:749:  const txSnap = await getDoc(txRef);
+src/lib/receptionTransaction.ts:762:    await setDoc(liveRef, {
+src/lib/receptionTransaction.ts:795:    const liveSnaps = await Promise.all(liveRefs.map(r => getDoc(r)));
+src/lib/receptionTransaction.ts:808:      await updateDoc(txRef, {
+src/lib/receptionTransaction.ts:814:      await updateDoc(ticketRef, {
+src/lib/receptionTransaction.ts:871:  await setDoc(txRef, {
+src/lib/receptionTransaction.ts:879:  await setDoc(ticketRef, {
+src/lib/bmhpLinenTransaction.ts:4:  getDoc, 
+src/lib/bmhpLinenTransaction.ts:5:  setDoc, 
+src/lib/bmhpLinenTransaction.ts:8:  addDoc 
+src/lib/bmhpLinenTransaction.ts:80:  await setDoc(doc(db, "bmhp_requests", requestId), requestData);
+src/lib/bmhpLinenTransaction.ts:123:    const snap = await getDoc(reqRef);
+src/lib/bmhpLinenTransaction.ts:132:    await setDoc(
+src/lib/bmhpLinenTransaction.ts:531:  await setDoc(doc(db, "linen_requests", requestId), requestData);
+src/lib/auditLogger.ts:1:import { collection, addDoc, serverTimestamp, getDocs, query, orderBy, limit } from "firebase/firestore";
+src/lib/auditLogger.ts:113:    await addDoc(collection(db, "audit_logs"), docData);
+src/lib/auditLogger.ts:115:      await addDoc(collection(db, "log_audit"), docData);
+src/lib/instrumentMigrator.ts:1:import { collection, getDocs, doc, setDoc, deleteDoc } from "firebase/firestore";
+src/lib/instrumentMigrator.ts:21:    const instSnap = await getDocs(collection(db, "instruments"));
+src/lib/instrumentMigrator.ts:53:        await setDoc(newDocRef, {
+src/lib/instrumentMigrator.ts:63:          await deleteDoc(doc(db, "instruments", oldId));
+src/lib/instrumentMigrator.ts:72:      const stockSnap = await getDocs(collection(db, "unit_stock"));
+src/lib/instrumentMigrator.ts:83:          await setDoc(newStockRef, {
+src/lib/instrumentMigrator.ts:92:            await deleteDoc(doc(db, "unit_stock", stockDoc.id));
+src/lib/dbSeeder.ts:4:  getDocs, 
+src/lib/dbSeeder.ts:5:  getDoc,
+src/lib/dbSeeder.ts:6:  setDoc, 
+src/lib/dbSeeder.ts:183:    const seedFlagSnap = await getDoc(seedFlagRef);
+src/lib/dbSeeder.ts:193:    const instSnap = await getDocs(query(instCol, limit(1)));
+src/lib/dbSeeder.ts:199:        await setDoc(doc(db, "instruments", inst.id), inst);
+src/lib/dbSeeder.ts:204:    const machSnap = await getDocs(query(machCol, limit(1)));
+src/lib/dbSeeder.ts:210:        await setDoc(doc(db, "machines", mach.id), mach);
+src/lib/dbSeeder.ts:260:        await setDoc(doc(db, "sterile_stock", stock.id), stock);
+src/lib/dbSeeder.ts:289:        await setDoc(doc(db, "distribution_logs", req.id), req);
+src/lib/dbSeeder.ts:313:        await setDoc(doc(db, "environmental_logs", log.id), log);
+src/lib/dbSeeder.ts:384:        await setDoc(doc(db, "workflow_logs", log.id), log);
+src/lib/dbSeeder.ts:393:    await setDoc(doc(db, "settings", "db_seed_flag"), { 
+src/lib/distributionTransaction.ts:4:  getDoc, 
+src/lib/distributionTransaction.ts:5:  setDoc, 
+src/lib/distributionTransaction.ts:6:  updateDoc, 
+src/lib/distributionTransaction.ts:10:  getDocs, 
+src/lib/distributionTransaction.ts:87:  const snap = await getDoc(liveRef);
+src/App.tsx:5:import { doc, getDoc, onSnapshot, setDoc } from "firebase/firestore";
+src/App.tsx:100:    const unsub = onSnapshot(
+src/App.tsx:143:            const snap = await getDoc(doc(db, "users", emailKey));
+src/App.tsx:172:              setDoc(doc(db, "users", emailKey), { uid: user.uid }, { merge: true }).catch(() => {});
+src/App.tsx:197:                setDoc(doc(db, "users", emailKey), fallbackProfile, { merge: true }).catch(() => {});

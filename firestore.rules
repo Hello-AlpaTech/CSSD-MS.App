@@ -1,0 +1,444 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions for auth and tenant isolation
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isEmailVerified() {
+      return isAuthenticated() && request.auth.token.email != null;
+    }
+
+    function isPlatformAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.email.lower() == 'cssdrsudbenda@gmail.com'
+      );
+    }
+
+    function userExists() {
+      return isAuthenticated() && exists(/databases/$(database)/documents/users/$(request.auth.token.email.lower()));
+    }
+
+    // Get user profile from lowercased email document ID in /users/{email}
+    function getUserProfile() {
+      return get(/databases/$(database)/documents/users/$(request.auth.token.email.lower())).data;
+    }
+
+    function getUserTenantId() {
+      return userExists() ? getUserProfile().tenantId : 'RSUD-BENDA';
+    }
+
+    function isTenantAdmin() {
+      return isAuthenticated() && (
+        isPlatformAdmin() ||
+        (userExists() && (
+          getUserProfile().role == 'ADMIN' ||
+          getUserProfile().role == 'admin' ||
+          getUserProfile().role == 'PLATFORM_ADMIN'
+        ))
+      );
+    }
+
+    function isTenantOwner(resourceData) {
+      return isAuthenticated() && (
+        isPlatformAdmin() ||
+        (!('tenantId' in resourceData)) ||
+        (userExists() && resourceData.tenantId == getUserTenantId())
+      );
+    }
+
+    function isNewTenantOwner(requestResourceData) {
+      return isAuthenticated() && (
+        isPlatformAdmin() ||
+        (!('tenantId' in requestResourceData)) ||
+        (userExists() && requestResourceData.tenantId == getUserTenantId())
+      );
+    }
+
+    // 1. Audit Logs & Activity Logs: APPEND-ONLY RULE (LOCKED SECURITY REQUIREMENT)
+    // Create & Read allowed for authenticated users of the same tenant. UPDATE & DELETE STRICTLY FORBIDDEN!
+    match /audit_logs/{logId} {
+      allow create: if isAuthenticated() && (request.resource.data.tenantId == getUserTenantId() || isPlatformAdmin());
+      allow read: if isAuthenticated() && (resource.data.tenantId == getUserTenantId() || isPlatformAdmin());
+      allow update, delete: if false;
+    }
+
+    match /log_audit/{logId} {
+      allow create: if isAuthenticated() && (request.resource.data.tenantId == getUserTenantId() || isPlatformAdmin());
+      allow read: if isAuthenticated() && (resource.data.tenantId == getUserTenantId() || isPlatformAdmin());
+      allow update, delete: if false;
+    }
+
+    match /activity_logs/{logId} {
+      allow create: if isAuthenticated() && (request.resource.data.tenantId == getUserTenantId() || isPlatformAdmin());
+      allow read: if isAuthenticated() && (resource.data.tenantId == getUserTenantId() || isPlatformAdmin());
+      allow update, delete: if false;
+    }
+
+    // 2. Transaction Idempotency Collection
+    match /transaction_idempotency/{idempId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // 3. User Profiles Collection
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (
+        request.auth.token.email.lower() == userId.lower() ||
+        resource.data.tenantId == getUserTenantId() ||
+        isPlatformAdmin()
+      );
+      allow create: if isAuthenticated() && (
+        isPlatformAdmin() ||
+        (isTenantAdmin() && 
+         request.resource.data.tenantId == getUserTenantId() &&
+         request.resource.data.role != 'PLATFORM_ADMIN' &&
+         request.resource.data.role != 'platform_admin' &&
+         request.resource.data.email.lower() == userId.lower())
+      );
+      allow update: if isAuthenticated() && (
+        isPlatformAdmin() ||
+        (isTenantAdmin() && 
+         resource.data.tenantId == getUserTenantId() &&
+         request.resource.data.tenantId == getUserTenantId() &&
+         request.resource.data.role != 'PLATFORM_ADMIN' &&
+         request.resource.data.role != 'platform_admin') ||
+        (request.auth.token.email.lower() == userId.lower() &&
+         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['uid']))
+      );
+      allow delete: if isAuthenticated() && (
+        (isTenantAdmin() && resource.data.tenantId == getUserTenantId()) ||
+        isPlatformAdmin()
+      );
+    }
+
+    match /pengguna/{userId} {
+      allow read: if isAuthenticated() && (resource.data.tenantId == getUserTenantId() || isPlatformAdmin());
+      allow create, update: if isAuthenticated() && (request.resource.data.tenantId == getUserTenantId() || isPlatformAdmin());
+      allow delete: if isAuthenticated() && (
+        (isTenantAdmin() && resource.data.tenantId == getUserTenantId()) ||
+        isPlatformAdmin()
+      );
+    }
+
+    // 4. System Settings Configuration
+    match /settings/{settingId} {
+      allow read, write: if isAuthenticated() && (
+        settingId == 'general' ||
+        settingId == 'db_seed_flag' ||
+        settingId.endsWith('_' + getUserTenantId()) ||
+        isPlatformAdmin()
+      );
+    }
+
+    // 5. Master Data & SSoT Collections
+    match /master_tenants/{tenantId} {
+      allow read: if isAuthenticated() && (tenantId == getUserTenantId() || isPlatformAdmin());
+      allow write: if isAuthenticated() && isPlatformAdmin();
+    }
+
+    match /tenant_installations/{instId} {
+      allow read: if isAuthenticated() && (resource.data.tenantId == getUserTenantId() || isPlatformAdmin());
+      allow create: if isAuthenticated() && (request.resource.data.tenantId == getUserTenantId() || isPlatformAdmin());
+      allow update: if isAuthenticated() && (
+        (resource.data.tenantId == getUserTenantId() && request.resource.data.tenantId == getUserTenantId()) ||
+        isPlatformAdmin()
+      );
+      allow delete: if isAuthenticated() && (
+        (isTenantAdmin() && resource.data.tenantId == getUserTenantId()) ||
+        isPlatformAdmin()
+      );
+    }
+
+    match /master_units/{unitId} {
+      allow read: if isAuthenticated() && (resource.data.tenantId == getUserTenantId() || isPlatformAdmin());
+      allow create: if isAuthenticated() && (request.resource.data.tenantId == getUserTenantId() || isPlatformAdmin());
+      allow update, delete: if isAuthenticated() && (
+        (isTenantAdmin() && resource.data.tenantId == getUserTenantId()) ||
+        isPlatformAdmin()
+      );
+    }
+
+    match /master_instruments/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    match /instrumen/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /instruments/{instrumentId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /inventaris_instrumen/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /inventory/{invId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /instrument_live_state/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /keadaan_aktif_instrumen/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /transaksi_penerimaan/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /reception_transactions/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /tiket/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /stok_steril/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /unit_stock/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /set_master/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /master_sets/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /komponen_set_master/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /master_set_components/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /kasus_ketidaksesuaian/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    match /catatan_recall/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    // 6. Workflow & Operational Logs
+    match /workflow_logs/{logId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    match /sterile_stock/{stockId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /distribution_logs/{distId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /discrepancy_cases/{caseId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    match /recall_logs/{logId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    // 7. Machines, Cycles, Tests & Environmental Logs
+    match /machines/{machineId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /master_machines/{machineId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /environmental_logs/{envId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    match /machine_cycles/{cycleId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    match /machine_test_logs/{testId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    match /bowie_dick_tests/{testId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    // 8. BMHP & Linen Consumables
+    match /bmhp_catalog/{bmhpId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /bmhp_logs/{logId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    match /linen_catalog/{linenId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /linen_laundry_queue/{id} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    // 9. Integration & Webhook Logs
+    match /webhooks/{logId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    match /webhook_logs/{logId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+      allow delete: if isAuthenticated() && (isTenantAdmin() || isPlatformAdmin()) && isTenantOwner(resource.data);
+    }
+
+    // 10. Active Collections with Rules
+    match /tickets/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /hold_records/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /bmhp_requests/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /bmhp_distributions/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /bmhp_returns/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /linen_requests/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /linen_distributions/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    match /linen_returns/{docId} {
+      allow read: if isAuthenticated() && isTenantOwner(resource.data);
+      allow create: if isAuthenticated() && isNewTenantOwner(request.resource.data);
+      allow update, delete: if isAuthenticated() && isTenantOwner(resource.data) && isNewTenantOwner(request.resource.data);
+    }
+
+    // Unmatched fallback rule: STRICT DEFAULT DENY
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

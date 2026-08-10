@@ -1,0 +1,448 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap");
+@import "tailwindcss";
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #thermal-receipt-57mm, #thermal-receipt-57mm * {
+    visibility: visible;
+  }
+  #thermal-receipt-57mm {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 58mm;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@keyframes laser {
+  0% { top: 2%; opacity: 0.3; }
+  50% { top: 98%; opacity: 1; }
+  100% { top: 2%; opacity: 0.3; }
+}
+
+.animate-laser {
+  animation: laser 2.5s infinite ease-in-out;
+}
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  #thermal-receipt-57mm, #thermal-receipt-57mm * {
+    visibility: visible !important;
+  }
+  #thermal-receipt-57mm {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 58mm !important;
+    margin: 0 !important;
+    padding: 2mm !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Custom Eye-Relaxing Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
+}
+
+/* ==========================================
+   MODE MALAM (NIGHT MODE / DEEP NAVY SLATE - EYE RELAXING)
+   ========================================== */
+#cssd-app-root:not(.theme-day) {
+  background-color: #07131B !important;
+  color: #F1F5F9 !important;
+}
+
+#cssd-app-root:not(.theme-day) aside {
+  background-color: #0A1921 !important;
+  color: #F8FAFC !important;
+  border-color: #122834 !important;
+}
+
+#cssd-app-root:not(.theme-day) header {
+  background-color: #0A1921 !important;
+  border-color: #122834 !important;
+  color: #F8FAFC !important;
+}
+
+#cssd-app-root:not(.theme-day) main {
+  background-color: #07131B !important;
+}
+
+/* Night Mode Cards & Containers */
+#cssd-app-root:not(.theme-day) .bg-slate-900,
+#cssd-app-root:not(.theme-day) .bg-slate-900\/90,
+#cssd-app-root:not(.theme-day) .bg-slate-900\/80,
+#cssd-app-root:not(.theme-day) .bg-slate-900\/50,
+#cssd-app-root:not(.theme-day) .bg-slate-900\/40,
+#cssd-app-root:not(.theme-day) .bg-slate-950 {
+  background-color: #0C1E29 !important;
+  border-color: #17303E !important;
+  color: #F1F5F9 !important;
+}
+
+#cssd-app-root:not(.theme-day) .bg-slate-950\/80,
+#cssd-app-root:not(.theme-day) .bg-slate-950\/70,
+#cssd-app-root:not(.theme-day) .bg-slate-950\/50 {
+  background-color: #081720 !important;
+  border-color: #122834 !important;
+}
+
+#cssd-app-root:not(.theme-day) .border-slate-800,
+#cssd-app-root:not(.theme-day) .border-slate-800\/80,
+#cssd-app-root:not(.theme-day) .border-slate-800\/60,
+#cssd-app-root:not(.theme-day) .border-slate-700 {
+  border-color: #17303E !important;
+}
+
+#cssd-app-root:not(.theme-day) input,
+#cssd-app-root:not(.theme-day) select,
+#cssd-app-root:not(.theme-day) textarea {
+  background-color: #06131B !important;
+  color: #F1F5F9 !important;
+  border-color: #1C394A !important;
+}
+
+#cssd-app-root:not(.theme-day) input:focus,
+#cssd-app-root:not(.theme-day) select:focus,
+#cssd-app-root:not(.theme-day) textarea:focus {
+  border-color: #38BDF8 !important;
+}
+
+/* ==========================================
+   MODE SIANG (DAY MODE / RSUD BENDA TEAL & SOFT SLATE CANVAS)
+   ========================================== */
+#cssd-app-root.theme-day {
+  background-color: #F1F5F9 !important;
+  color: #0F172A !important;
+}
+
+/* SIDEBAR IN DAY MODE (#0B5868 RSUD Benda Signature Teal) */
+#cssd-app-root.theme-day aside {
+  background-color: #0B5868 !important;
+  color: #FFFFFF !important;
+  border-color: #084552 !important;
+}
+
+#cssd-app-root.theme-day aside .text-white,
+#cssd-app-root.theme-day aside .text-slate-100,
+#cssd-app-root.theme-day aside .text-slate-200,
+#cssd-app-root.theme-day aside .text-slate-300 {
+  color: #FFFFFF !important;
+}
+
+#cssd-app-root.theme-day aside .text-slate-400,
+#cssd-app-root.theme-day aside .text-slate-500 {
+  color: #E0F2FE !important;
+  font-weight: 700 !important;
+}
+
+#cssd-app-root.theme-day aside .bg-slate-900\/40,
+#cssd-app-root.theme-day aside .bg-slate-900\/50,
+#cssd-app-root.theme-day aside .bg-slate-900 {
+  background-color: #084552 !important;
+  border-color: #063540 !important;
+}
+
+#cssd-app-root.theme-day aside button {
+  color: #F8FAFC !important;
+}
+
+#cssd-app-root.theme-day aside button:hover {
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  color: #FFFFFF !important;
+}
+
+#cssd-app-root.theme-day aside button.bg-white\/20,
+#cssd-app-root.theme-day aside .bg-white\/20 {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  color: #FFFFFF !important;
+  border-left: 4px solid #F59E0B !important;
+  font-weight: 800 !important;
+}
+
+/* HEADER IN DAY MODE */
+#cssd-app-root.theme-day header {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+#cssd-app-root.theme-day header .text-slate-100,
+#cssd-app-root.theme-day header .text-slate-200,
+#cssd-app-root.theme-day header .text-slate-300,
+#cssd-app-root.theme-day header h1,
+#cssd-app-root.theme-day header h2 {
+  color: #0F172A !important;
+}
+
+#cssd-app-root.theme-day header .text-slate-400,
+#cssd-app-root.theme-day header .text-slate-500 {
+  color: #334155 !important;
+}
+
+#cssd-app-root.theme-day header .text-sky-400,
+#cssd-app-root.theme-day header .text-sky-500 {
+  color: #0B5868 !important;
+  font-weight: 800 !important;
+}
+
+#cssd-app-root.theme-day header .bg-slate-900 {
+  background-color: #F8FAFC !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+}
+
+#cssd-app-root.theme-day header select option {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+/* MAIN VIEWPORT IN DAY MODE */
+#cssd-app-root.theme-day main {
+  background-color: #F1F5F9 !important;
+}
+
+/* CARDS, PANELS, AND CONTAINERS IN DAY MODE */
+#cssd-app-root.theme-day .bg-slate-950,
+#cssd-app-root.theme-day .bg-slate-900,
+#cssd-app-root.theme-day .bg-slate-900\/90,
+#cssd-app-root.theme-day .bg-slate-900\/80,
+#cssd-app-root.theme-day .bg-slate-900\/50,
+#cssd-app-root.theme-day .bg-slate-900\/40,
+#cssd-app-root.theme-day .bg-slate-900\/20 {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 1px 3px rgba(11, 88, 104, 0.05);
+}
+
+#cssd-app-root.theme-day .bg-slate-950\/80,
+#cssd-app-root.theme-day .bg-slate-950\/70,
+#cssd-app-root.theme-day .bg-slate-950\/60,
+#cssd-app-root.theme-day .bg-slate-950\/50,
+#cssd-app-root.theme-day .bg-slate-950\/40,
+#cssd-app-root.theme-day .bg-slate-950\/30 {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+#cssd-app-root.theme-day .border-slate-800,
+#cssd-app-root.theme-day .border-slate-800\/80,
+#cssd-app-root.theme-day .border-slate-800\/60,
+#cssd-app-root.theme-day .border-slate-700 {
+  border-color: #CBD5E1 !important;
+}
+
+/* GENERAL TYPOGRAPHY IN DAY MODE */
+#cssd-app-root.theme-day .text-slate-100,
+#cssd-app-root.theme-day .text-slate-200,
+#cssd-app-root.theme-day .text-slate-300 {
+  color: #0F172A !important;
+}
+
+#cssd-app-root.theme-day .text-slate-400 {
+  color: #334155 !important;
+}
+
+#cssd-app-root.theme-day .text-slate-500 {
+  color: #475569 !important;
+}
+
+#cssd-app-root.theme-day .text-slate-600 {
+  color: #64748B !important;
+}
+
+/* CRITICAL: PRESERVE WHITE TEXT ON SOLID COLORED & DARK BUTTONS / BADGES */
+#cssd-app-root.theme-day button.bg-teal-600,
+#cssd-app-root.theme-day button.bg-teal-500,
+#cssd-app-root.theme-day button.bg-sky-600,
+#cssd-app-root.theme-day button.bg-sky-500,
+#cssd-app-root.theme-day button.bg-indigo-600,
+#cssd-app-root.theme-day button.bg-indigo-500,
+#cssd-app-root.theme-day button.bg-emerald-600,
+#cssd-app-root.theme-day button.bg-emerald-500,
+#cssd-app-root.theme-day button.bg-rose-600,
+#cssd-app-root.theme-day button.bg-rose-500,
+#cssd-app-root.theme-day button.bg-amber-600,
+#cssd-app-root.theme-day button.bg-slate-800,
+#cssd-app-root.theme-day button.bg-slate-900,
+#cssd-app-root.theme-day .bg-teal-600,
+#cssd-app-root.theme-day .bg-sky-600,
+#cssd-app-root.theme-day .bg-indigo-600,
+#cssd-app-root.theme-day .bg-emerald-600,
+#cssd-app-root.theme-day .bg-rose-600,
+#cssd-app-root.theme-day .bg-amber-600 {
+  color: #FFFFFF !important;
+}
+
+#cssd-app-root.theme-day button.bg-teal-600 *,
+#cssd-app-root.theme-day button.bg-teal-500 *,
+#cssd-app-root.theme-day button.bg-sky-600 *,
+#cssd-app-root.theme-day button.bg-sky-500 *,
+#cssd-app-root.theme-day button.bg-indigo-600 *,
+#cssd-app-root.theme-day button.bg-indigo-500 *,
+#cssd-app-root.theme-day button.bg-emerald-600 *,
+#cssd-app-root.theme-day button.bg-emerald-500 *,
+#cssd-app-root.theme-day button.bg-rose-600 *,
+#cssd-app-root.theme-day button.bg-rose-500 *,
+#cssd-app-root.theme-day button.bg-amber-600 *,
+#cssd-app-root.theme-day button.bg-slate-800 *,
+#cssd-app-root.theme-day button.bg-slate-900 *,
+#cssd-app-root.theme-day .bg-teal-600 *,
+#cssd-app-root.theme-day .bg-sky-600 *,
+#cssd-app-root.theme-day .bg-indigo-600 *,
+#cssd-app-root.theme-day .bg-emerald-600 *,
+#cssd-app-root.theme-day .bg-rose-600 *,
+#cssd-app-root.theme-day .bg-amber-600 * {
+  color: #FFFFFF !important;
+}
+
+/* HIGH-CONTRAST STATUS BADGES & PILLS IN DAY MODE */
+#cssd-app-root.theme-day .bg-emerald-500\/10,
+#cssd-app-root.theme-day .bg-emerald-950\/10 {
+  background-color: #D1FAE5 !important;
+  border-color: #6EE7B7 !important;
+}
+#cssd-app-root.theme-day .text-emerald-400,
+#cssd-app-root.theme-day .text-emerald-300 {
+  color: #047857 !important;
+  font-weight: 700 !important;
+}
+
+#cssd-app-root.theme-day .bg-amber-500\/10,
+#cssd-app-root.theme-day .bg-amber-950\/10 {
+  background-color: #FEF3C7 !important;
+  border-color: #FCD34D !important;
+}
+#cssd-app-root.theme-day .text-amber-400,
+#cssd-app-root.theme-day .text-amber-300 {
+  color: #B45309 !important;
+  font-weight: 700 !important;
+}
+
+#cssd-app-root.theme-day .bg-rose-500\/10,
+#cssd-app-root.theme-day .bg-rose-950\/10,
+#cssd-app-root.theme-day .bg-rose-950\/20 {
+  background-color: #FEE2E2 !important;
+  border-color: #FCA5A5 !important;
+}
+#cssd-app-root.theme-day .text-rose-400,
+#cssd-app-root.theme-day .text-rose-300 {
+  color: #B91C1C !important;
+  font-weight: 700 !important;
+}
+
+#cssd-app-root.theme-day .bg-sky-500\/10,
+#cssd-app-root.theme-day .bg-sky-950\/10,
+#cssd-app-root.theme-day .bg-sky-950\/20 {
+  background-color: #E0F2FE !important;
+  border-color: #7DD3FC !important;
+}
+#cssd-app-root.theme-day .text-sky-400,
+#cssd-app-root.theme-day .text-sky-300 {
+  color: #0369A1 !important;
+  font-weight: 700 !important;
+}
+
+#cssd-app-root.theme-day .bg-indigo-500\/10 {
+  background-color: #EEF2FF !important;
+  border-color: #A5B4FC !important;
+}
+#cssd-app-root.theme-day .text-indigo-400 {
+  color: #4338CA !important;
+  font-weight: 700 !important;
+}
+
+#cssd-app-root.theme-day .bg-purple-500\/10 {
+  background-color: #F3E8FF !important;
+  border-color: #D8B4FE !important;
+}
+#cssd-app-root.theme-day .text-purple-400 {
+  color: #7E22CE !important;
+  font-weight: 700 !important;
+}
+
+#cssd-app-root.theme-day .bg-blue-500\/10 {
+  background-color: #DBEAFE !important;
+  border-color: #93C5FD !important;
+}
+#cssd-app-root.theme-day .text-blue-400 {
+  color: #1D4ED8 !important;
+  font-weight: 700 !important;
+}
+
+/* ACCENTS & HIGHLIGHTS IN DAY MODE */
+#cssd-app-root.theme-day .border-sky-500,
+#cssd-app-root.theme-day .border-sky-400 {
+  border-color: #0B5868 !important;
+}
+
+/* TABLES IN DAY MODE */
+#cssd-app-root.theme-day table {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+#cssd-app-root.theme-day table th {
+  background-color: #F1F5F9 !important;
+  color: #0B5868 !important;
+  border-color: #CBD5E1 !important;
+  font-weight: 800 !important;
+}
+
+#cssd-app-root.theme-day table td {
+  border-color: #E2E8F0 !important;
+  color: #1E293B !important;
+}
+
+#cssd-app-root.theme-day table tr:hover {
+  background-color: #F8FAFC !important;
+}
+
+/* INPUTS & FORM CONTROLS IN DAY MODE */
+#cssd-app-root.theme-day input,
+#cssd-app-root.theme-day select,
+#cssd-app-root.theme-day textarea {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+
+#cssd-app-root.theme-day input:focus,
+#cssd-app-root.theme-day select:focus,
+#cssd-app-root.theme-day textarea:focus {
+  border-color: #0B5868 !important;
+  outline: none !important;
+}
+
+#cssd-app-root.theme-day input::placeholder,
+#cssd-app-root.theme-day textarea::placeholder {
+  color: #64748B !important;
+}

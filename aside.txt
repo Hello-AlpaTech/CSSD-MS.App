@@ -1,0 +1,107 @@
+      <aside className={`hidden md:flex flex-col w-64 shrink-0 shadow-xl z-20 ${themeMode === 'siang' ? 'bg-[#0B5868] text-white border-r border-[#084552]' : 'bg-[#0A1921] text-slate-100 border-r border-[#122834]'} ${isDemoMode || isSimulatedOffline ? 'pt-8' : ''}`}>
+        <div className="p-5 border-b border-[#084552] flex items-center gap-2.5">
+          <div className="w-9 h-9 rounded-full overflow-hidden shrink-0 flex items-center justify-center">
+            <img src={appIcon || "/Icon.png"} alt={appName} className="w-full h-full object-cover rounded-full" onError={(e) => { (e.target as HTMLImageElement).src = "/Icon.png"; }} />
+          </div>
+          <div className="min-w-0">
+            <span className="font-black text-white text-sm font-sans tracking-tight block truncate">e-CSSD.ms</span>
+            <span className="text-[10px] text-cyan-200 block tracking-wider font-mono font-bold">by.AlpaTech</span>
+          </div>
+        </div>
+
+        <div className="p-4 bg-[#084552] border-b border-[#063540] flex items-center gap-3">
+          <div className={`rounded-full bg-slate-900 border border-slate-700 text-white overflow-hidden flex items-center justify-center w-8 h-8 ${!userProfile?.photoUrl ? "p-1.5" : ""}`}>
+            {userProfile?.photoUrl ? <img src={userProfile.photoUrl} alt="Foto" className="w-8 h-8 rounded-full object-cover" /> : <User className="w-4 h-4 text-cyan-300" />}
+          </div>
+          <div className="min-w-0 flex-1">
+            <span className="text-xs font-bold text-white block truncate">{userProfile?.name}</span>
+            <span className="text-[9px] text-cyan-200 font-mono font-bold uppercase tracking-wider block">{userProfile?.role}</span>
+          </div>
+          <button onClick={handleLogout} className="p-1.5 text-slate-200 hover:text-rose-300 hover:bg-rose-500/20 rounded-md transition" title="Logout / Ganti Akun">
+            <LogOut className="w-4 h-4" />
+          </button>
+        </div>
+
+        <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+          <button onClick={() => handleTabChange("dashboard")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "dashboard" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <LayoutDashboard className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>Beranda</span>
+          </button>
+
+          <div className="pt-4 pb-1 px-3 text-[10px] font-black text-cyan-200 uppercase tracking-widest border-t border-[#084552] mt-2">Alur Operasional</div>
+
+          <button onClick={() => handleTabChange("machine_test")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "machine_test" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <Gauge className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>0. Uji Kelayakan Mesin</span>
+          </button>
+
+          <button onClick={() => handleTabChange("penerimaan")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "penerimaan" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <ClipboardCheck className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>1. Penerimaan Alat</span>
+          </button>
+
+          <button onClick={() => handleTabChange("decontamination")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "decontamination" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <Droplets className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>2. Dekontaminasi & Cuci</span>
+          </button>
+
+          <button onClick={() => handleTabChange("packaging")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "packaging" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <Package className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>3. Identifikasi & Labeling</span>
+          </button>
+
+          <button onClick={() => handleTabChange("sterilization")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "sterilization" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <Flame className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>4. Sterilisasi Autoclave</span>
+          </button>
+
+          <button onClick={() => handleTabChange("storage")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "storage" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <FolderClosed className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>5. Penyimpanan Area Steril</span>
+          </button>
+
+          <button onClick={() => handleTabChange("distribution")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "distribution" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <Handshake className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>6. Distribusi &amp; Serah Terima</span>
+          </button>
+
+          <div className="pt-4 pb-1 px-3 text-[10px] font-black text-cyan-200 uppercase tracking-widest border-t border-[#084552] mt-2">SISTEM e-CSSD</div>
+          
+          <button onClick={() => handleTabChange("origin_unit_stock")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "origin_unit_stock" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <ShieldCheck className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>Stok Di Unit Asal</span>
+          </button>
+
+          <button onClick={() => handleTabChange("on_process_cssd")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "on_process_cssd" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <Activity className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>On Proses CSSD</span>
+          </button>
+
+          <button onClick={() => handleTabChange("activity_log")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "activity_log" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <ClipboardList className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>Aktivitas Log</span>
+          </button>
+          <button onClick={() => handleTabChange("webhook_log")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "webhook_log" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <Webhook className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>Log Webhook</span>
+          </button>
+          <button onClick={() => handleTabChange("webhook_log")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "webhook_log" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <Webhook className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>Log Webhook</span>
+          </button>
+
+          <button onClick={() => handleTabChange("inventory")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "inventory" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <Package className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>Inventaris & BMHP</span>
+          </button>
+
+          <button onClick={() => handleTabChange("settings")} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition ${currentTab === "settings" ? "bg-white/20 text-white font-extrabold border-l-4 border-amber-300 shadow" : "hover:bg-white/10 text-slate-100 font-semibold"}`}>
+            <Sliders className="w-4 h-4 text-amber-300 shrink-0" />
+            <span>Pengaturan</span>
+          </button>
+
+          <div className="pt-3 pb-1 px-1">
+            <InstallPWA isSidebarItem={true} />
+          </div>
+        </nav>
+      </aside>
